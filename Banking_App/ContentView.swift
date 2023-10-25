@@ -33,11 +33,10 @@ struct ProgressBar: View {
                     .foregroundColor(Color.gray.opacity(0.3))
                 
                 Rectangle()
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color.blue)
                     .frame(width: CGFloat(value) * geometry.size.width)
             }
         }
-        .cornerRadius(8)
     }
 }
 
@@ -96,6 +95,8 @@ struct ContentView: View {
                 
                 Spacer()
                 
+                
+                
                 //                HStack {
                 //                    if isImage1Visible {
                 //                        Image("Card_1")
@@ -134,6 +135,9 @@ struct ContentView: View {
                             .onTapGesture {
                                 withAnimation {
                                     isCard1Visible = false
+                                    if expValue < 1.0 {
+                                        expValue += 0.25  // Increment EXP here
+                                    }
                                 }
                             }
                     }
@@ -145,10 +149,14 @@ struct ContentView: View {
                             .onTapGesture {
                                 withAnimation {
                                     isCard2Visible = false
+                                    if expValue < 1.0 {
+                                        expValue += 0.25  // Increment EXP here
+                                    }
                                 }
                             }
                     }
                 }
+                
                 HStack(spacing: 100) {
                     if isCard3Visible {
                         Image("Card_3")
@@ -157,6 +165,9 @@ struct ContentView: View {
                             .onTapGesture {
                                 withAnimation {
                                     isCard3Visible = false
+                                    if expValue < 1.0 {
+                                        expValue += 0.25  // Increment EXP here
+                                    }
                                 }
                             }
                     }
@@ -168,28 +179,26 @@ struct ContentView: View {
                             .onTapGesture {
                                 withAnimation {
                                     isPoopVisible = false
+                                    if expValue < 1.0 {
+                                        expValue -= 0.1  // Decrement EXP here
+                                    }
                                 }
                             }
                     }
                 }
-                
-                
-                ProgressBar(value: expValue)
-                    .padding(.horizontal, 80.0)
-                    .frame(height: 20)
-                
+
+                HStack {
+                        ProgressBar(value: expValue)
+                            .frame(height: 20)
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
+                    .background(Color.gray.opacity(0.3))
+                    .cornerRadius(8)
                 
                 
             }
         }
-        .onTapGesture {
-            // Increment EXP when an image is clicked
-            if expValue < 1.0 {
-                withAnimation {
-                    expValue += 0.1  // Increment by 10%
-                }
-            }
-        }
+
         .animation(.easeInOut(duration: 1), value: isCard1Visible)
         .animation(.easeInOut(duration: 1), value: isCard2Visible)
         .animation(.easeInOut(duration: 1), value: isCard3Visible)
