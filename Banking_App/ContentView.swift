@@ -30,14 +30,13 @@ struct ProgressBar: View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 Rectangle()
-                    .foregroundColor(Color.gray.opacity(0.3))
+                    .foregroundColor(Color.white)
                 
                 Rectangle()
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color.blue)
                     .frame(width: CGFloat(value) * geometry.size.width)
             }
         }
-        .cornerRadius(8)
     }
 }
 
@@ -50,175 +49,211 @@ struct ContentView: View {
     @State private var isPoopVisible: Bool = true
     
     @State private var expValue: Float = 0.0  // Current EXP value
+    @State private var showImage: Bool = false
     
     //    @State private var image1Offset: CGSize = CGSize.zero
     //    @State private var image2Offset: CGSize = CGSize.zero
     
     var body: some View {
-        ZStack {
-            // Background Image
-            Image("homePage_Background")  // Replace with the name of your background image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .ignoresSafeArea()
-            
-            // other UI elements here
-            VStack {
-                ZStack(alignment: .top) {
-                    // Monster Image
-                    Image("Monster_Homepage")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 150.0, height: 150.0).offset(x: 0,y: 280)
+        NavigationView {
+            ZStack {
+                // Background Image
+                Image("homePage_Background")  // Replace with the name of your background image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea()
+                
+                // other UI elements here
+                VStack {
                     
-                    ThoughtBubble()
-                        .stroke(Color.gray, lineWidth: 2)
-                        .frame(width: 150.0, height: 50.0)
-                        .offset(x: -100, y: 200)
-                        .scaleEffect(scale)
-                        .animation(
-                            Animation.easeInOut(duration: 1)
-                                .repeatForever(autoreverses: true),
-                            value: scale  // Associate the animation with the 'scale' state variable
-                        )
-                        .onAppear() {
-                            self.scale = 1.05
+                    ZStack(alignment: .top) {
+                        // Monster Image
+                        Image("Monster_Homepage")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 150.0, height: 150.0).offset(x: -100,y: 250)
+                        
+                        VStack {
+                            NavigationLink(destination: ImageView()) {
+                                Image("Thought_bubble")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 200, height: 200)
+                                    .offset(x: -40,y: 110)
+                            }
                         }
-                        .overlay(
-                            // Text in Thought Bubble
-                            Text(isTextVisible ? "Hi There, you got a credit card payment due in 6 days!" : "")
-                                .foregroundColor(.black)
-                        )
-                        .onTapGesture {
-                            self.isTextVisible.toggle()
+                    }
+                    
+                    
+                    Spacer()
+                    
+                    
+                    HStack(spacing: 100) {
+                        if isCard1Visible {
+                            Image("Card_1")
+                                .resizable()
+                                .frame(width: 70, height: 70).offset(x: 0,y: -30)
+                                .onTapGesture {
+                                    withAnimation {
+                                        isCard1Visible = false
+                                        if expValue < 1.0 {
+                                            expValue += 0.25  // Increment EXP here
+                                        }
+                                    }
+                                }
                         }
-                }
-                
-                Spacer()
-                
-                //                HStack {
-                //                    if isImage1Visible {
-                //                        Image("Card_1")
-                //                            .resizable()
-                //                            .frame(width: 100, height: 100)
-                //                            .offset(x: image1Offset.width, y: image1Offset.height)
-                //                            .onTapGesture {
-                //                                withAnimation {
-                //                                    isImage1Visible = false
-                //                                }
-                //                            }
-                //                            .transition(.opacity)
-                //                    }
-                //
-                //                    if isImage2Visible {
-                //                        Image("Card_2")
-                //                            .resizable()
-                //                            .frame(width: 100, height: 100)
-                //                            .offset(x: image2Offset.width, y: image2Offset.height)
-                //                            .onTapGesture {
-                //                                withAnimation {
-                //                                    isImage2Visible = false
-                //                                }
-                //                            }
-                //                            .transition(.opacity)
-                //                    }
-                //
-                //
-                //                    // Add more images here with similar logic
-                //                }
-                HStack(spacing: 50) {
-                    if isCard1Visible {
-                        Image("Card_1")
-                            .resizable()
-                            .frame(width: 70, height: 70).offset(x: 0,y: -180)
-                            .onTapGesture {
-                                withAnimation {
-                                    isCard1Visible = false
+                        
+                        if isCard2Visible {
+                            Image("Card_2")
+                                .resizable()
+                                .frame(width: 70, height: 40).offset(x: 0,y: -40)
+                                .onTapGesture {
+                                    withAnimation {
+                                        isCard2Visible = false
+                                        if expValue < 1.0 {
+                                            expValue += 0.25  // Increment EXP here
+                                        }
+                                    }
                                 }
-                            }
+                        }
                     }
                     
-                    if isCard2Visible {
-                        Image("Card_2")
-                            .resizable()
-                            .frame(width: 70, height: 70).offset(x: 0,y: -130)
-                            .onTapGesture {
-                                withAnimation {
-                                    isCard2Visible = false
+                    HStack(spacing: 150) {
+                        if isCard3Visible {
+                            Image("Card_3")
+                                .resizable()
+                                .frame(width: 70, height: 50).offset(x: 0,y: -10)
+                                .onTapGesture {
+                                    withAnimation {
+                                        isCard3Visible = false
+                                        if expValue < 1.0 {
+                                            expValue += 0.25  // Increment EXP here
+                                        }
+                                    }
                                 }
-                            }
-                    }
-                }
-                HStack(spacing: 100) {
-                    if isCard3Visible {
-                        Image("Card_3")
-                            .resizable()
-                            .frame(width: 70, height: 50).offset(x: 0,y: -100)
-                            .onTapGesture {
-                                withAnimation {
-                                    isCard3Visible = false
+                        }
+                        
+                        if isPoopVisible {
+                            Image("Poop")
+                                .resizable()
+                                .frame(width: 60, height: 60).offset(x: -100,y: 0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        isPoopVisible = false
+                                        if expValue < 1.0 {
+                                            expValue -= 0.1  // Decrement EXP here
+                                        }
+                                    }
                                 }
-                            }
+                        }
                     }
                     
-                    if isPoopVisible {
-                        Image("Poop")
+                    //                Spacer()
+                    
+                    //Z Stack for the friendly_monster and progress bar
+                    ZStack {
+                        // Background color or other decoration here
+                        
+                        //                    HStack {
+                        // Friend_Monster Image
+                        Image("Friend_Monster")
                             .resizable()
-                            .frame(width: 60, height: 60).offset(x: 0,y: -80)
-                            .onTapGesture {
-                                withAnimation {
-                                    isPoopVisible = false
-                                }
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200.0, height: 200.0)
+                            .offset(x: 100,y: -25)
+                        
+                        
+                        // The VStack for text and progress bar
+                        VStack {
+                            HStack {
+                                Text("Aditya Lv.3")
+                                Spacer()
+                                Text("+ EXP")
                             }
+                            .font(.system(size: 22))
+                            .bold()
+                            .foregroundColor(Color.blue)
+                            
+                            ProgressBar(value: expValue)
+                                .frame(height: 10)
+                        }
+                        //                            .background(Color.gray.opacity(0.2))  // Debugging background
+                        .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
+                        .offset(x: 0,y: 40)
+                        
+                        //                        Spacer()
+                        
+                        
+                        
+                        //                        }
+                        
+                        
                     }
+                    .frame(width: 400.0, height: 130.0)
+                    //                .cornerRadius(2)
+                    
+                    HStack {
+                        Spacer()
+                        VStack() {
+                            Image("Accounts_icon")  // Replace icon
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            Text("Accounts")
+                                .font(.caption)
+                        }
+                        Spacer()
+                        VStack {
+                            Image("COM_icon")  // Replace icon
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            Text("COM")
+                                .font(.caption)
+                        }
+                        Spacer()
+                        VStack {
+                            Image("Profile_icon")  // Replace icon
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            Text("Profile")
+                                .font(.caption)
+                        }
+                        Spacer()
+                    }
+                    .padding(.top, 30.0)
+                    .frame(width: UIScreen.main.bounds.width, height: 60)
+                    //                .frame(maxWidth: .infinity)
+                    //                .padding()
+                    .frame(height: 50.0)
+                    .background(Color.white)  // White background
+                    
+                    
                 }
-                
-                
-                ProgressBar(value: expValue)
-                    .padding(.horizontal, 80.0)
-                    .frame(height: 20)
-                
-                
-                
             }
+            //        .font(.custom("IrishGrover", size: 20))
+            .animation(.easeInOut(duration: 1), value: isCard1Visible)
+            .animation(.easeInOut(duration: 1), value: isCard2Visible)
+            .animation(.easeInOut(duration: 1), value: isCard3Visible)
+            .animation(.easeInOut(duration: 1), value: isPoopVisible)
         }
-        .onTapGesture {
-            // Increment EXP when an image is clicked
-            if expValue < 1.0 {
-                withAnimation {
-                    expValue += 0.1  // Increment by 10%
-                }
-            }
-        }
-        .animation(.easeInOut(duration: 1), value: isCard1Visible)
-        .animation(.easeInOut(duration: 1), value: isCard2Visible)
-        .animation(.easeInOut(duration: 1), value: isCard3Visible)
-        .animation(.easeInOut(duration: 1), value: isPoopVisible)
-        //        .onAppear {
-        //                    // Generate random offsets
-        //                    image1Offset = randomOffset()
-        //                    image2Offset = randomOffset()
-        //                    // Generate more offsets for additional images
-        //                }
     }
-    
-    //    func randomOffset() -> CGSize {
-    //        let padding: CGFloat = 50  // Padding from the edges
-    //        let imageWidth: CGFloat = 100  // Image width
-    //        let imageHeight: CGFloat = 100  // Image height
-    //
-    //        // Calculate the range for random offsets
-    //        let maxX = 150 - (imageWidth / 2 + padding)  // Max x-offset
-    //        let maxY = 150 - (imageHeight / 2 + padding)  // Max y-offset
-    //
-    //        let minX = -(150 - (imageWidth / 2 + padding))  // Min x-offset
-    //        let minY = -(150 - (imageHeight / 2 + padding))  // Min y-offset
-    //
-    //        let randomX = CGFloat.random(in: minX...maxX)
-    //        let randomY = CGFloat.random(in: minY...maxY)
-    //
-    //        return CGSize(width: randomX, height: randomY)
-    //    }
+}
+
+struct ImageView: View {
+    var body: some View {
+        VStack {
+            Image("Credit_card_page")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(.bottom, 30.0)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                .navigationBarTitle("", displayMode: .inline)
+                .navigationBarItems(leading: Button("") {
+                    // Pop this view off the navigation stack to return to the previous view
+                    presentationMode.wrappedValue.dismiss()
+                })
+        }
+    }
+    @Environment(\.presentationMode) var presentationMode
 }
 
 #Preview {

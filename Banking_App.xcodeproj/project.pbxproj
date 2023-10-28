@@ -11,6 +11,7 @@
 		B265AF8A2AE5E3C70075298E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265AF892AE5E3C70075298E /* ContentView.swift */; };
 		B265AF8C2AE5E3C90075298E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B265AF8B2AE5E3C90075298E /* Assets.xcassets */; };
 		B265AF8F2AE5E3C90075298E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B265AF8E2AE5E3C90075298E /* Preview Assets.xcassets */; };
+		B265AF962AEAF94A0075298E /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B265AF952AEAF94A0075298E /* IrishGrover-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		B265AF892AE5E3C70075298E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B265AF8B2AE5E3C90075298E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B265AF8E2AE5E3C90075298E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B265AF952AEAF94A0075298E /* IrishGrover-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "IrishGrover-Regular.ttf"; path = "../../../Downloads/Irish_Grover/IrishGrover-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				B265AF872AE5E3C70075298E /* Banking_App.swift */,
+				B265AF952AEAF94A0075298E /* IrishGrover-Regular.ttf */,
 				B265AF892AE5E3C70075298E /* ContentView.swift */,
 				B265AF8B2AE5E3C90075298E /* Assets.xcassets */,
 				B265AF8D2AE5E3C90075298E /* Preview Content */,
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B265AF8F2AE5E3C90075298E /* Preview Assets.xcassets in Resources */,
+				B265AF962AEAF94A0075298E /* IrishGrover-Regular.ttf in Resources */,
 				B265AF8C2AE5E3C90075298E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
