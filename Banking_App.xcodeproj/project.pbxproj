@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B265AF882AE5E3C70075298E /* Banking_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265AF872AE5E3C70075298E /* Banking_AppApp.swift */; };
+		B265AF882AE5E3C70075298E /* Banking_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265AF872AE5E3C70075298E /* Banking_App.swift */; };
 		B265AF8A2AE5E3C70075298E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265AF892AE5E3C70075298E /* ContentView.swift */; };
 		B265AF8C2AE5E3C90075298E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B265AF8B2AE5E3C90075298E /* Assets.xcassets */; };
 		B265AF8F2AE5E3C90075298E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B265AF8E2AE5E3C90075298E /* Preview Assets.xcassets */; };
@@ -15,7 +15,7 @@
 
 /* Begin PBXFileReference section */
 		B265AF842AE5E3C70075298E /* Banking_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banking_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B265AF872AE5E3C70075298E /* Banking_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking_AppApp.swift; sourceTree = "<group>"; };
+		B265AF872AE5E3C70075298E /* Banking_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking_App.swift; sourceTree = "<group>"; };
 		B265AF892AE5E3C70075298E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B265AF8B2AE5E3C90075298E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B265AF8E2AE5E3C90075298E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		B265AF862AE5E3C70075298E /* Banking_App */ = {
 			isa = PBXGroup;
 			children = (
-				B265AF872AE5E3C70075298E /* Banking_AppApp.swift */,
+				B265AF872AE5E3C70075298E /* Banking_App.swift */,
 				B265AF892AE5E3C70075298E /* ContentView.swift */,
 				B265AF8B2AE5E3C90075298E /* Assets.xcassets */,
 				B265AF8D2AE5E3C90075298E /* Preview Content */,
@@ -138,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B265AF8A2AE5E3C70075298E /* ContentView.swift in Sources */,
-				B265AF882AE5E3C70075298E /* Banking_AppApp.swift in Sources */,
+				B265AF882AE5E3C70075298E /* Banking_App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
