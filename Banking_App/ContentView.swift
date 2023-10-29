@@ -33,7 +33,7 @@ struct ProgressBar: View {
                     .foregroundColor(Color.white)
                 
                 Rectangle()
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
                     .frame(width: CGFloat(value) * geometry.size.width)
             }
         }
@@ -74,7 +74,7 @@ struct ContentView: View {
                             .frame(width: 150.0, height: 150.0).offset(x: -100,y: 250)
                         
                         VStack {
-                            NavigationLink(destination: ImageView()) {
+                            NavigationLink(destination: ImageView(imageName: "Credit_card_page")) {
                                 Image("Thought_bubble")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -170,34 +170,28 @@ struct ContentView: View {
                                 Spacer()
                                 Text("+ EXP")
                             }
-                            .font(.system(size: 22))
+//                            .font(.system(size: 22))
                             .bold()
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
                             
                             ProgressBar(value: expValue)
                                 .frame(height: 10)
                         }
-                        //                            .background(Color.gray.opacity(0.2))  // Debugging background
                         .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
                         .offset(x: 0,y: 40)
-                        
-                        //                        Spacer()
-                        
-                        
-                        
-                        //                        }
                         
                         
                     }
                     .frame(width: 400.0, height: 130.0)
-                    //                .cornerRadius(2)
                     
                     HStack {
                         Spacer()
                         VStack() {
-                            Image("Accounts_icon")  // Replace icon
-                                .resizable()
-                                .frame(width: 40, height: 40)
+                            NavigationLink(destination: ImageView(imageName: "accounts_Page")){
+                                Image("Accounts_icon")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                            }
                             Text("Accounts")
                                 .font(.caption)
                         }
@@ -229,7 +223,7 @@ struct ContentView: View {
                     
                 }
             }
-            //        .font(.custom("IrishGrover", size: 20))
+            .font(.custom("IrishGrover-Regular", size: 20))
             .animation(.easeInOut(duration: 1), value: isCard1Visible)
             .animation(.easeInOut(duration: 1), value: isCard2Visible)
             .animation(.easeInOut(duration: 1), value: isCard3Visible)
@@ -239,9 +233,11 @@ struct ContentView: View {
 }
 
 struct ImageView: View {
+    var imageName: String
+    
     var body: some View {
         VStack {
-            Image("Credit_card_page")
+            Image(imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding(.bottom, 30.0)
