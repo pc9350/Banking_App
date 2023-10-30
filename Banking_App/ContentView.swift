@@ -58,10 +58,41 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 // Background Image
-                Image("homePage_Background")  // Replace with the name of your background image
+                Image("homepage_Background")  // Replace with the name of your background image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
+                
+                VStack {
+                        HStack {
+                            NavigationLink(destination: ImageView(imageName: "monster_Page").padding(.bottom,60)){
+                                Image("top_Left_Icon")  // Replace icon
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .padding(7)
+                                    .clipShape(Circle())  // Clip to circle shape
+                                    .overlay(Circle().stroke(Color.black, lineWidth: 2))
+                                    .padding(.leading, 20)
+                            }
+                            Spacer()
+                            NavigationLink(destination: ImageView(imageName: "prize_Page").padding(.bottom,60)){
+                                Image("top_Right_Icon")  // Replace icon
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .padding(7)
+                                    .clipShape(Circle())  // Clip to circle shape
+                                    .overlay(Circle().stroke(Color.black, lineWidth: 2))
+                                    .padding(.trailing, 20)
+                            }
+                        }
+                        .frame(width: UIScreen.main.bounds.width)
+                        .padding(.horizontal, 30)  // Add some horizontal padding
+//                        .background(Color.red)  // Debugging background
+
+                        Spacer()  // This pushes the HStack to the top
+                    }
                 
                 // other UI elements here
                 VStack {
@@ -74,7 +105,7 @@ struct ContentView: View {
                             .frame(width: 150.0, height: 150.0).offset(x: -100,y: 250)
                         
                         VStack {
-                            NavigationLink(destination: ImageView(imageName: "Credit_card_page")) {
+                            NavigationLink(destination: ImageView(imageName: "Credit_card_page").padding(.bottom,90)) {
                                 Image("Thought_bubble")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -179,8 +210,6 @@ struct ContentView: View {
                         }
                         .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
                         .offset(x: 0,y: 40)
-                        
-                        
                     }
                     .frame(width: 400.0, height: 130.0)
                     
@@ -239,8 +268,8 @@ struct ImageView: View {
         VStack {
             Image(imageName)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(.bottom, 30.0)
+                .aspectRatio(contentMode: .fill)
+//                .padding(.bottom, 90.0)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: Button("") {
