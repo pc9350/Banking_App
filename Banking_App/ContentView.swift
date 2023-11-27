@@ -105,7 +105,7 @@ struct ContentView: View {
                 
                 VStack {
                     HStack {
-                        NavigationLink(destination: ImageView(imageName: "monster_Page").padding(.bottom,60)){
+                        NavigationLink(destination: MonsterMenuView().padding(.bottom,20)){
                             Image("top_Left_Icon")  // Replace icon
                                 .resizable()
                                 .scaledToFit()
@@ -116,7 +116,7 @@ struct ContentView: View {
                                 .padding(.leading, 20)
                         }
                         Spacer()
-                        NavigationLink(destination: ImageView(imageName: "prize_Page").padding(.bottom,60)){
+                        NavigationLink(destination: PrizePageView()){
                             Image("top_Right_Icon")  // Replace icon
                                 .resizable()
                                 .scaledToFit()

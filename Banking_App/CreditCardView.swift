@@ -112,7 +112,7 @@ struct CreditCardView: View {
                                 .foregroundColor(Color(hex: 0x3482A8))
                                 .overlay(
                                     HStack(spacing: 8) {
-                                        Image("AutoPay")
+                                        Image("autopay")
                                             .resizable()
                                             .frame(width: 45, height: 50)
                                             .foregroundColor(.white)

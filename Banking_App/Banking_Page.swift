@@ -113,26 +113,28 @@ struct Banking_Page: View {
                         .font(.headline)
                         .padding([.leading,.top])
                     
-                    HStack {
-                        Image("Card_3") // Replace with your card icon asset name
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 70, height: 70) // Adjust size as needed
-                            .foregroundColor(.white)
-                            .padding([.leading,.vertical], 5)
-                        
-                        VStack(alignment: .leading) {
-                            Text("PLATINUM")
-                                .font(.caption)
-                                .fontWeight(.semibold)
+                NavigationLink(destination: CreditCardView()){
+                        HStack {
+                            Image("Card_3") // Replace with your card icon asset name
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 70, height: 70) // Adjust size as needed
                                 .foregroundColor(.white)
-                                .padding(.vertical, 2)
-                            Text("\(userInfo.CC_Balance) / \(userInfo.CC_Limit)")
-                                .font(.headline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
+                                .padding([.leading,.vertical], 5)
+                            
+                            VStack(alignment: .leading) {
+                                Text("PLATINUM")
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                                    .padding(.vertical, 2)
+                                Text("\(userInfo.CC_Balance) / \(userInfo.CC_Limit)")
+                                    .font(.headline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                            }
+                            .padding([.top, .bottom], 10)
                         }
-                        .padding([.top, .bottom], 10)
                         
                         Spacer()
                         

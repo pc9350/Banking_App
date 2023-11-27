@@ -21,8 +21,8 @@ struct PrizePageView: View {
                 // Background Image
                 Image("Prize")
                     .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+//                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+60)
                 
                 VStack {
                     Rectangle()
