@@ -65,7 +65,7 @@ struct ContentView: View {
                 
                 VStack {
                         HStack {
-                            NavigationLink(destination: ImageView(imageName: "monster_Page").padding(.bottom,60)){
+                            NavigationLink(destination: MonsterMenuView().padding(.bottom,60)){
                                 Image("top_Left_Icon")  // Replace icon
                                     .resizable()
                                     .scaledToFit()
@@ -201,7 +201,7 @@ struct ContentView: View {
                                 Spacer()
                                 Text("+ EXP")
                             }
-//                            .font(.system(size: 22))
+                            .font(.system(size: 22))
                             .bold()
                             .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
                             
