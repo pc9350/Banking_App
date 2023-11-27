@@ -104,27 +104,52 @@ struct ContentView: View {
                 
                 
                 VStack {
-                    HStack {
-                        NavigationLink(destination: ImageView(imageName: "monster_Page").padding(.bottom,60)){
-                            Image("top_Left_Icon")  // Replace icon
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .padding(7)
-                                .clipShape(Circle())  // Clip to circle shape
-                                .overlay(Circle().stroke(Color.black, lineWidth: 2))
-                                .padding(.leading, 20)
-                        }
-                        Spacer()
-                        NavigationLink(destination: ImageView(imageName: "prize_Page").padding(.bottom,60)){
-                            Image("top_Right_Icon")  // Replace icon
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .padding(7)
-                                .clipShape(Circle())  // Clip to circle shape
-                                .overlay(Circle().stroke(Color.black, lineWidth: 2))
-                                .padding(.trailing, 20)
+<<<<<<< HEAD
+//                    HStack {
+//                        NavigationLink(destination: ImageView(imageName: "monster_Page").padding(.bottom,60)){
+//                            Image("top_Left_Icon")  // Replace icon
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 40, height: 40)
+//                                .padding(7)
+//                                .clipShape(Circle())  // Clip to circle shape
+//                                .overlay(Circle().stroke(Color.black, lineWidth: 2))
+//                                .padding(.leading, 20)
+//                        }
+//                        Spacer()
+//                        NavigationLink(destination: ImageView(imageName: "prize_Page").padding(.bottom,60)){
+//                            Image("top_Right_Icon")  // Replace icon
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 40, height: 40)
+//                                .padding(7)
+//                                .clipShape(Circle())  // Clip to circle shape
+//                                .overlay(Circle().stroke(Color.black, lineWidth: 2))
+//                                .padding(.trailing, 20)
+=======
+                        HStack {
+                            NavigationLink(destination: MonsterMenuView().padding(.bottom,60)){
+                                Image("top_Left_Icon")  // Replace icon
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .padding(7)
+                                    .clipShape(Circle())  // Clip to circle shape
+                                    .overlay(Circle().stroke(Color.black, lineWidth: 2))
+                                    .padding(.leading, 20)
+                            }
+                            Spacer()
+                            NavigationLink(destination: ImageView(imageName: "prize_Page").padding(.bottom,60)){
+                                Image("top_Right_Icon")  // Replace icon
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .padding(7)
+                                    .clipShape(Circle())  // Clip to circle shape
+                                    .overlay(Circle().stroke(Color.black, lineWidth: 2))
+                                    .padding(.trailing, 20)
+                            }
+>>>>>>> origin/IzzyUpdated
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width)
@@ -246,6 +271,10 @@ struct ContentView: View {
                                 Spacer()
                                 Text("+ EXP")
                             }
+<<<<<<< HEAD
+=======
+                            .font(.system(size: 22))
+>>>>>>> origin/IzzyUpdated
                             .bold()
                             .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
                             
