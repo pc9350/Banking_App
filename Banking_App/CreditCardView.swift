@@ -16,6 +16,7 @@ struct CreditCardView: View {
         NavigationView {
             ZStack {
                 Color(hex: 0x004879)
+                .ignoresSafeArea()
                 
                 VStack {
                     Image("\(cardImage)")

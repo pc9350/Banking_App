@@ -74,7 +74,8 @@ struct MonsterMenuView: View {
                 Image("Monster")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+60)
+                    .frame(width: UIScreen.main.bounds.width+20, height: UIScreen.main.bounds.height+70)
+                    .ignoresSafeArea()
                 
                 VStack(spacing: -70) {
                     HStack {
