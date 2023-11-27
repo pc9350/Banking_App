@@ -73,14 +73,14 @@
 				B265AF892AE5E3C70075298E /* ContentView.swift */,
 				B265AF8B2AE5E3C90075298E /* Assets.xcassets */,
 				B265AF8D2AE5E3C90075298E /* Preview Content */,
-<<<<<<< HEAD
+
 				B2EBAF532B0824E000CC5B81 /* Login_Page.swift */,
-=======
+
 				3188993E2AF9622300838E6A /* MonsterMenuView.swift */,
 				317418AC2B029AA100CA67CB /* PrizePageView.swift */,
 				317418AE2B13C2AF00CA67CB /* CreditCardView.swift */,
 				317418B02B140DDB00CA67CB /* PaymentProcessedView.swift */,
->>>>>>> origin/IzzyUpdated
+
 			);
 			path = Banking_App;
 			sourceTree = "<group>";
