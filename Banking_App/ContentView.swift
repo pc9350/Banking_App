@@ -104,7 +104,7 @@ struct ContentView: View {
                 
                 
                 VStack {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //                    HStack {
 //                        NavigationLink(destination: ImageView(imageName: "monster_Page").padding(.bottom,60)){
 //                            Image("top_Left_Icon")  // Replace icon
@@ -126,7 +126,7 @@ struct ContentView: View {
 //                                .clipShape(Circle())  // Clip to circle shape
 //                                .overlay(Circle().stroke(Color.black, lineWidth: 2))
 //                                .padding(.trailing, 20)
-=======
+
                         HStack {
                             NavigationLink(destination: MonsterMenuView().padding(.bottom,60)){
                                 Image("top_Left_Icon")  // Replace icon
@@ -149,7 +149,7 @@ struct ContentView: View {
                                     .overlay(Circle().stroke(Color.black, lineWidth: 2))
                                     .padding(.trailing, 20)
                             }
->>>>>>> origin/IzzyUpdated
+//>>>>>>> origin/IzzyUpdated
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width)
