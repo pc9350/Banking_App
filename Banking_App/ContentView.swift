@@ -69,7 +69,7 @@ struct ContentView: View {
     let card2Size: CGSize = CGSize(width: 70, height: 40)
     let card3Size: CGSize = CGSize(width: 70, height: 50)
     let card4Size: CGSize = CGSize(width: 60, height: 60)
-
+    
     @State private var userInfo = UserAccountInfo(name: "Mickey", checkingAccountBalance: "$8,525.81", savingAccountBalance: "$372,600.24",CC_Balance: "$2,000",CC_Limit: "$4,000",EXP: 0,level: 1, creditScore: 750)
     
     let positions = [
@@ -81,7 +81,7 @@ struct ContentView: View {
         CGPoint(x: 350, y: 400)  // Adjusted
     ]
     
-
+    
     // Randomize the positions
     @State private var randomizedPositions: [CGPoint]
     
@@ -90,8 +90,11 @@ struct ContentView: View {
     }
     
     
+    @State private var isRedClicked: Bool = false
+    @State private var isInfoClicked: Bool = false
+    
     var body: some View {
-   
+        
         
         NavigationView {
             ZStack {
@@ -158,67 +161,67 @@ struct ContentView: View {
                     Spacer()
                     
                     ZStack{
-//                        HStack {
-                            if isCard1Visible {
-                                
-                                Image("Card_1")
-                                    .resizable()
-                                    .frame(width: card1Size.width, height: card1Size.height)
-//                                    .position(x: 350, y: 400)
-                                                                    .position(randomizedPositions[0])
-                                // For debugging
-                                .onTapGesture {
-                                        withAnimation {
-                                            isCard1Visible = false
-                                            incrementExp(by: 0.25)
-                                        }
-                                    }
-                            }
+                        //                        HStack {
+                        if isCard1Visible {
                             
-                            if isCard2Visible {
-                                Image("Card_2")
-                                    .resizable()
-                                    .frame(width: card2Size.width, height: card2Size.height)
-//                                .position(x: 500, y: 200)
-                                    .position(randomizedPositions[1])
+                            Image("Card_1")
+                                .resizable()
+                                .frame(width: card1Size.width, height: card1Size.height)
+                            //                                    .position(x: 350, y: 400)
+                                .position(randomizedPositions[0])
+                            // For debugging
                                 .onTapGesture {
-                                        withAnimation {
-                                            isCard2Visible = false
-                                            incrementExp(by: 0.25)
-                                        }
-                                    //}
-                            }
+                                    withAnimation {
+                                        isCard1Visible = false
+                                        incrementExp(by: 0.25)
+                                    }
+                                }
                         }
                         
-//                        HStack {
-                            if isCard3Visible {
-                                Image("Card_3")
-                                    .resizable()
-                                    .frame(width: card3Size.width, height: card3Size.height)
-//                                .position(x: 300, y: 220)
-                                    .position(randomizedPositions[2])
+                        if isCard2Visible {
+                            Image("Card_2")
+                                .resizable()
+                                .frame(width: card2Size.width, height: card2Size.height)
+                            //                                .position(x: 500, y: 200)
+                                .position(randomizedPositions[1])
                                 .onTapGesture {
-                                        withAnimation {
-                                            isCard3Visible = false
-                                            incrementExp(by: 0.25)
-                                        }
+                                    withAnimation {
+                                        isCard2Visible = false
+                                        incrementExp(by: 0.25)
                                     }
-                            }
-                            
-                            if isPoopVisible {
-                                Image("Poop")
-                                    .resizable()
-                                    .frame(width: card4Size.width, height: card4Size.height)
-//                                    .position(x: 400, y: 350)
-//                                    .border(Color.green, width: 1)
+                                    //}
+                                }
+                        }
+                        
+                        //                        HStack {
+                        if isCard3Visible {
+                            Image("Card_3")
+                                .resizable()
+                                .frame(width: card3Size.width, height: card3Size.height)
+                            //                                .position(x: 300, y: 220)
+                                .position(randomizedPositions[2])
+                                .onTapGesture {
+                                    withAnimation {
+                                        isCard3Visible = false
+                                        incrementExp(by: 0.25)
+                                    }
+                                }
+                        }
+                        
+                        if isPoopVisible {
+                            Image("Poop")
+                                .resizable()
+                                .frame(width: card4Size.width, height: card4Size.height)
+                            //                                    .position(x: 400, y: 350)
+                            //                                    .border(Color.green, width: 1)
                                 .position(randomizedPositions[3])
                                 .onTapGesture {
-                                        withAnimation {
-                                            isPoopVisible = false
-                                            incrementExp(by: -0.1)
-                                        }
+                                    withAnimation {
+                                        isPoopVisible = false
+                                        incrementExp(by: -0.1)
                                     }
-//                            }
+                                }
+                            //                            }
                         }
                     }
                     .onAppear {
@@ -231,18 +234,86 @@ struct ContentView: View {
                     ZStack {
                         // Background color or other decoration here
                         
-                        // Friend_Monster Image
-                        Image("Friend_Monster")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 200.0, height: 200.0)
-                            .offset(x: 100,y: -25)
+                        Button {
+                                                    isRedClicked = true
+                                                } label: {
+                                                    Image("Friend_Monster").resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 200.0, height: 200.0)
+                                                        .offset(x: 100,y: -25)
+                                                }
+                        
+                        
+                        if (isRedClicked == true){
+                                                    Button(action: {
+                                                        isRedClicked = false
+                                                    }){
+
+                                                        Image("blank_rectangle").resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width: 600.0, height: 500.0)
+                                                            .offset(x: 0,y: -280)
+                                                    }
+                                                    Image("Friend_Monster").resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 200.0, height: 200.0)
+                                                        .offset(x: 30.5,y: -135)
+                                                    Button {
+                                                        isRedClicked = false
+                                                    } label:{
+                                                        Image("x_icon").resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width: 30.0, height: 30.0)
+                                                            .offset(x: -110,y: -500)
+                                                    }
+                                                    Image("send_zelle_icon").resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 150.0, height: 500.0)
+                                                        .offset(x: 0,y: -410)
+                                                    Image("request_zelle_icon").resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 150.0, height: 500.0)
+                                                        .offset(x: 0,y: -320)
+                                                }
+
+                        
+                        if (isInfoClicked == true){
+                                                   // Button {
+                                                     //   isInfoClicked = false
+                                                    //} label:{
+                                                      //  Image("Cross").offset(x: -50, y: 200)
+                                                    //}
+                                                    Button {
+                                                        isInfoClicked = false
+                                                    } label: {
+                                                        Image("info_homepage").resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width: 600.0, height: 650.0)
+                                                            .offset(x: 0,y: -300)
+
+                                                    }
+                                                    Button {
+                                                        isInfoClicked = false
+                                                    } label:{
+                                                        Image("x_icon").resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width: 30.0, height: 30.0)
+                                                            .offset(x: -108,y: -490)
+                                                    }
+
+                                                }
                         
                         
                         // The VStack for text and progress bar
                         VStack {
                             HStack {
                                 Text("\(userInfo.name) Lv. \(userInfo.level)")
+                                Button {
+                                                                    isInfoClicked = true
+                                                                } label: {
+                                                                    Image( "info_icon")
+                                                            }
+                                
                                 Spacer()
                                 Text("+ EXP")
                             }
@@ -391,9 +462,8 @@ struct ImageView: View {
             Image(imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-            //                .padding(.bottom, 90.0)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                .navigationBarTitle("", displayMode: .inline)
+            //                .navigationBarTitle("", displayMode: .inline)
                 .navigationBarBackButtonHidden(true) // Hides the default back button
                 .navigationBarItems(leading: Button(action: {
                     // Pop this view off the navigation stack to return to the previous view

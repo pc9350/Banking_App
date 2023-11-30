@@ -6,67 +6,10 @@
 //
 
 import SwiftUI
-//
-//struct MonsterMenuView: View {
-//    var body: some View {
-//        NavigationView {
-//            ZStack {
-//                // Background Image
-//                Image("Monster")
-//                    .resizable()
-//                    .scaledToFill()
-//                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-//                
-//                VStack(spacing: -70) {
-//                    HStack {
-//                        NavigationLink(destination: ImageView(imageName: "Eggplant Bat")){
-//                            Image("PurpleMonster")  // Replace icon
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 180, height: 180)
-//                                .padding(.top, 280)
-//                        }
-//                        Spacer()
-//                    }
-//                    HStack {
-//                        Spacer()
-//                        NavigationLink(destination: ImageView(imageName: "Lollipop")){
-//                            Image("Friend_Monster")  // Replace icon
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 180, height: 180)
-//                                .padding(.bottom, -60)
-//                                .padding(.top, 135)
-//                        }
-//                    }
-//                    HStack {
-//                        NavigationLink(destination: ImageView(imageName: "Fluffy Potato")){
-//                            Image("Yellow Monster")  // Replace icon
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 180, height: 180)
-//                                .padding(.top, 20)
-//                        }
-//                        Spacer()
-//                    }
-//                    HStack {
-////                        Spacer()
-//                        NavigationLink(destination: ImageView(imageName: "Onion")){
-//                            Image("COM_icon")  // Replace icon
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 180, height: 180)
-//                                .padding(.bottom, 100)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+
 struct MonsterMenuView: View {
     @State private var selection: String? = nil
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -112,12 +55,13 @@ struct MonsterMenuView: View {
                     }
                     
                     HStack {
-                        NavigationLink(destination: ImageView(imageName: "Fluffy Potato"), tag: "Fluffy Potato", selection: $selection) {
+                        NavigationLink(destination: ImageView(imageName: "Fluffy Potato").navigationBarBackButtonHidden(true), tag: "Fluffy Potato", selection: $selection) {
                             EmptyView()
                         }
                         Button(action: {
                             self.selection = "Fluffy Potato"
-                        }) {
+                        })
+                        {
                             Image("Yellow Monster")
                                 .resizable()
                                 .scaledToFit()
@@ -128,7 +72,9 @@ struct MonsterMenuView: View {
                     }
                     
                     HStack {
-                        NavigationLink(destination: ImageView(imageName: "Onion"), tag: "Onion", selection: $selection) {
+                        NavigationLink(destination: ImageView(imageName: "Onion")
+                                       .navigationBarBackButtonHidden(true),
+                                       tag: "Onion", selection: $selection) {
                             EmptyView()
                         }
                         Button(action: {
