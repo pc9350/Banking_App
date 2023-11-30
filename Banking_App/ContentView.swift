@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Banking_App
-//
-//  Created by Pranav Chhabra on 10/22/23.
-//
-
 import SwiftUI
 
 struct ThoughtBubble: Shape {
@@ -50,11 +43,15 @@ struct ContentView: View {
     
     @State private var expValue: Float = 0.0  // Current EXP value
     @State private var showImage: Bool = false
-    
+    ///////////////////////////////////////////////////////////////////////////
+    @State private var isRedClicked: Bool = false
+    @State private var isInfoClicked: Bool = false
+    ////////////////////////////////////////////////////////////////////////////
     //    @State private var image1Offset: CGSize = CGSize.zero
     //    @State private var image2Offset: CGSize = CGSize.zero
     
     var body: some View {
+        
         NavigationView {
             ZStack {
                 // Background Image
@@ -64,35 +61,35 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                        HStack {
-                            NavigationLink(destination: ImageView(imageName: "monster_Page").padding(.bottom,60)){
-                                Image("top_Left_Icon")  // Replace icon
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 40, height: 40)
-                                    .padding(7)
-                                    .clipShape(Circle())  // Clip to circle shape
-                                    .overlay(Circle().stroke(Color.black, lineWidth: 2))
-                                    .padding(.leading, 20)
-                            }
-                            Spacer()
-                            NavigationLink(destination: ImageView(imageName: "prize_Page").padding(.bottom,60)){
-                                Image("top_Right_Icon")  // Replace icon
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 40, height: 40)
-                                    .padding(7)
-                                    .clipShape(Circle())  // Clip to circle shape
-                                    .overlay(Circle().stroke(Color.black, lineWidth: 2))
-                                    .padding(.trailing, 20)
-                            }
+                    HStack {
+                        NavigationLink(destination: ImageView(imageName: "monster_Page").padding(.bottom,60)){
+                            Image("top_Left_Icon")  // Replace icon
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .padding(7)
+                                .clipShape(Circle())  // Clip to circle shape
+                                .overlay(Circle().stroke(Color.black, lineWidth: 2))
+                                .padding(.leading, 20)
                         }
-                        .frame(width: UIScreen.main.bounds.width)
-                        .padding(.horizontal, 30)  // Add some horizontal padding
-//                        .background(Color.red)  // Debugging background
-
-                        Spacer()  // This pushes the HStack to the top
+                        Spacer()
+                        NavigationLink(destination: ImageView(imageName: "prize_Page").padding(.bottom,60)){
+                            Image("top_Right_Icon")  // Replace icon
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .padding(7)
+                                .clipShape(Circle())  // Clip to circle shape
+                                .overlay(Circle().stroke(Color.black, lineWidth: 2))
+                                .padding(.trailing, 20)
+                        }
                     }
+                    .frame(width: UIScreen.main.bounds.width)
+                    .padding(.horizontal, 30)  // Add some horizontal padding
+                    //                        .background(Color.red)  // Debugging background
+                    
+                    Spacer()  // This pushes the HStack to the top
+                }
                 
                 // other UI elements here
                 VStack {
@@ -187,21 +184,106 @@ struct ContentView: View {
                         
                         //                    HStack {
                         // Friend_Monster Image
-                        Image("Friend_Monster")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 200.0, height: 200.0)
-                            .offset(x: 100,y: -25)
+                       
                         
+                        // Button(action: {
+                         //   isRedClicked = true
+                        //}
+                               
+                        //)
+                        Button {
+                            isRedClicked = true
+                        } label: {
+                            Image("Friend_Monster").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200.0, height: 200.0)
+                                .offset(x: 100,y: -25)
+                        }
+                            
+                            
+                            
                         
+                        if (isRedClicked == true){
+                            Button(action: {
+                                isRedClicked = false
+                            }){
+                                
+                                Image("Rectangle").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 600.0, height: 500.0)
+                                    .offset(x: 0,y: -280)
+                            }
+                            Image("Friend_Monster").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200.0, height: 200.0)
+                                .offset(x: 30.5,y: -135)
+                            Button {
+                                isRedClicked = false
+                            } label:{
+                                Image("Cross").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30.0, height: 30.0)
+                                    .offset(x: -110,y: -500)
+                            }
+                            Image("Send").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 150.0, height: 500.0)
+                                .offset(x: 0,y: -410)
+                            Image("Request").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 150.0, height: 500.0)
+                                .offset(x: 0,y: -320)
+                        }
+                        
+                        // .frame(width: 0.0)
                         // The VStack for text and progress bar
+                        
+                        if (isInfoClicked == true){
+                           // Button {
+                             //   isInfoClicked = false
+                            //} label:{
+                              //  Image("Cross").offset(x: -50, y: 200)
+                            //}
+                            Button {
+                                isInfoClicked = false
+                            } label: {
+                                Image("MonsterInfo").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 600.0, height: 650.0)
+                                    .offset(x: 0,y: -300)
+
+                            }
+                            Button {
+                                isInfoClicked = false
+                            } label:{
+                                Image("Cross").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30.0, height: 30.0)
+                                    .offset(x: -108,y: -490)
+                            }
+                            
+                        }
                         VStack {
                             HStack {
+                                
                                 Text("Aditya Lv.3")
+                                Button {
+                                    isInfoClicked = true
+                                } label: {
+                                    Image( "Info")
+                                    
+                                    
+                                }
+                                
+                                
+                                
                                 Spacer()
                                 Text("+ EXP")
+                                
                             }
-//                            .font(.system(size: 22))
+                            
+                            
+                            //                            .font(.system(size: 22))
                             .bold()
                             .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
                             
@@ -212,7 +294,6 @@ struct ContentView: View {
                         .offset(x: 0,y: 40)
                     }
                     .frame(width: 400.0, height: 130.0)
-                    
                     HStack {
                         Spacer()
                         VStack() {
@@ -259,26 +340,27 @@ struct ContentView: View {
             .animation(.easeInOut(duration: 1), value: isPoopVisible)
         }
     }
-}
-
-struct ImageView: View {
-    var imageName: String
     
-    var body: some View {
-        VStack {
-            Image(imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-//                .padding(.bottom, 90.0)
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                .navigationBarTitle("", displayMode: .inline)
-                .navigationBarItems(leading: Button("") {
-                    // Pop this view off the navigation stack to return to the previous view
-                    presentationMode.wrappedValue.dismiss()
-                })
+    
+    struct ImageView: View {
+        var imageName: String
+        
+        var body: some View {
+            VStack {
+                Image(imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                //                .padding(.bottom, 90.0)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                    .navigationBarTitle("", displayMode: .inline)
+                    .navigationBarItems(leading: Button("") {
+                        // Pop this view off the navigation stack to return to the previous view
+                        presentationMode.wrappedValue.dismiss()
+                    })
+            }
         }
+        @Environment(\.presentationMode) var presentationMode
     }
-    @Environment(\.presentationMode) var presentationMode
 }
 
 #Preview {
