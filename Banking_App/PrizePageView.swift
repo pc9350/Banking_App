@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct PrizePageView: View {
+    let accountDetails: AccountDetails?
+    
     // Declaring text variable
     let titleText = "Amazing job,"
-    let name = "Aditya"
-    let capitalOneMiles = 50
-    let walmartCredits = 5
-    let amazonCredits = 0
-    let targetCredits = 0
+    let name = "Mickey"
+//    let capitalOneMiles = 50
+//    let walmartCredits = 5
+//    let amazonCredits = 0
+//    let targetCredits = 0
     var body: some View {
         NavigationView {
             ZStack {
@@ -67,7 +69,7 @@ struct PrizePageView: View {
                             .scaledToFill()
                             .frame(width: 50, height: 50)
                         
-                        Text("\(capitalOneMiles) Capital One Miles")
+                        Text("\((accountDetails?.miles ?? 0)) Capital One Miles")
                             .font(.custom("IrishGrover-Regular", size: 18))
                     }
                     
@@ -78,7 +80,7 @@ struct PrizePageView: View {
                             .frame(width: 30, height: 30)
                             .padding(13)
                         
-                        Text("\(walmartCredits) Walmart Credits")
+                        Text("\(accountDetails?.walmartCredits ?? 0) Walmart Credits")
                             .font(.custom("IrishGrover-Regular", size: 18))
                     }
                     
@@ -88,7 +90,7 @@ struct PrizePageView: View {
                             .scaledToFill()
                             .frame(width: 60, height: 60)
                         
-                        Text("\(amazonCredits) Amazon Credits")
+                        Text("\(accountDetails?.amazonCredits ?? 0) Amazon Credits")
                             .font(.custom("IrishGrover-Regular", size: 18))
                     }
                     
@@ -99,7 +101,7 @@ struct PrizePageView: View {
                             .frame(width: 45, height: 45)
                             .padding(7)
                         
-                        Text("\(targetCredits) Target Credits")
+                        Text("\(accountDetails?.targetCredits ?? 0) Target Credits")
                             .font(.custom("IrishGrover-Regular", size: 18))
                     }
                 }
@@ -110,7 +112,23 @@ struct PrizePageView: View {
 
 struct PrizePageView_Previews: PreviewProvider {
     static var previews: some View {
-        PrizePageView()
+        
+        let sampleAccountDetails = AccountDetails(
+                    accountNumber: "123456789",
+                    xpAmount: 75.0,  // Example XP amount
+                    level: 3,        // Example level
+                    checkingAmount: 5000,    // Example checking account balance
+                    savingsAmount: 15000,    // Example savings account balance
+                    miles: 200,      // Example miles
+                    walmartCredits: 10,      // Example Walmart credits
+                    amazonCredits: 5,        // Example Amazon credits
+                    targetCredits: 8,        // Example Target credits
+                    joinDate: Date(),        // Current date
+                    id: "abc123"             // Example ID
+                )
+
+        
+        PrizePageView(accountDetails: sampleAccountDetails)
     }
 }
 

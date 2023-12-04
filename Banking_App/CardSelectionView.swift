@@ -17,7 +17,7 @@ struct CardSelectionView: View {
                     Color(hex: 0x004879)
                         .ignoresSafeArea()
                         .frame(height: 230)
-                        .padding(.top, -400)
+                        .offset(x:0,y:-270)
                 }
 
                 
@@ -25,8 +25,8 @@ struct CardSelectionView: View {
                     
                     Image("CapitalOneLogo-White")
                         .resizable()
-                        .frame(width: 380, height: 200)
-                        .padding(.top, -20)
+                        .frame(width: 300, height: 150)
+                        .padding([.top,.bottom], 20)
                     
                     // Header
                     VStack() {
@@ -35,7 +35,7 @@ struct CardSelectionView: View {
                             .font(Font.system(size: 26))
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
-                            .padding(.top, -30)
+                            .padding(.top, -40)
                         Text("Coming Up              ")
                             .font(Font.system(size: 26))
                             .fontWeight(.semibold)
@@ -50,7 +50,7 @@ struct CardSelectionView: View {
                     VStack(alignment: .leading) {
                         Text("Payment due")
                             .font(.headline)
-                            .padding([.leading,.top])
+                            .padding([.leading])
                         
                         NavigationLink(destination: CreditCardView()){
                             HStack {
@@ -244,6 +244,9 @@ struct CardSelectionView: View {
             }
             .navigationBarBackButtonHidden(true)
         }
+//        // Hide the navigation bar for this view
+//        .navigationBarHidden(true)
+
     }
 }
 

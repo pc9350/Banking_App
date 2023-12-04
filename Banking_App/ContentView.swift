@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct UserAccountInfo {
     var name: String
@@ -73,12 +74,12 @@ struct ContentView: View {
     @State private var userInfo = UserAccountInfo(name: "Mickey", checkingAccountBalance: "$8,525.81", savingAccountBalance: "$372,600.24",CC_Balance: "$2,000",CC_Limit: "$4,000",EXP: 0,level: 1, creditScore: 750)
     
     let positions = [
-        CGPoint(x: 300, y: 300), // Adjusted
-        CGPoint(x: 500, y: 200), // Adjusted
-        CGPoint(x: 300, y: 220), // Adjusted
-        CGPoint(x: 400, y: 350), // Adjusted
-        CGPoint(x: 450, y: 300), // Adjusted
-        CGPoint(x: 350, y: 400)  // Adjusted
+        CGPoint(x: 300, y: 280), // Adjusted
+        CGPoint(x: 500, y: 180), // Adjusted
+        CGPoint(x: 300, y: 200), // Adjusted
+        CGPoint(x: 400, y: 310), // Adjusted
+        CGPoint(x: 450, y: 280), // Adjusted
+        CGPoint(x: 350, y: 340)  // Adjusted
     ]
     
     
@@ -93,8 +94,13 @@ struct ContentView: View {
     @State private var isRedClicked: Bool = false
     @State private var isInfoClicked: Bool = false
     
+    //value to fetch from backend for the EXP
+    @State private var xpAmount: Int = 0
+    
+    @State private var accountDetails: AccountDetails?
+    
+    
     var body: some View {
-        
         
         NavigationView {
             ZStack {
@@ -105,8 +111,8 @@ struct ContentView: View {
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
                 
-                
                 VStack {
+                    
                     HStack {
                         NavigationLink(destination: MonsterMenuView()){
                             Image("top_Left_Icon")  // Replace icon
@@ -119,7 +125,7 @@ struct ContentView: View {
                                 .padding(.leading, 20)
                         }
                         Spacer()
-                        NavigationLink(destination: PrizePageView()){
+                        NavigationLink(destination: PrizePageView(accountDetails: accountDetails)){
                             Image("top_Right_Icon")  // Replace icon
                                 .resizable()
                                 .scaledToFit()
@@ -147,7 +153,7 @@ struct ContentView: View {
                             .frame(width: 150.0, height: 150.0).offset(x: -100,y: 250)
                         
                         VStack {
-                            NavigationLink(destination: ImageView(imageName: "Credit_card_page").padding(.bottom,90)) {
+                            NavigationLink(destination: CardSelectionView(userInfo: userInfo)) {
                                 Image("Thought_bubble")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -175,8 +181,13 @@ struct ContentView: View {
                                         isCard1Visible = false
                                         incrementExp(by: 0.25)
                                     }
+                                    if var details = accountDetails {
+                                        details.miles += 20
+                                        accountDetails = details  // Update the state
+                                    }
                                 }
                         }
+                        
                         
                         if isCard2Visible {
                             Image("Card_2")
@@ -235,104 +246,109 @@ struct ContentView: View {
                         // Background color or other decoration here
                         
                         Button {
-                                                    isRedClicked = true
-                                                } label: {
-                                                    Image("Friend_Monster").resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width: 200.0, height: 200.0)
-                                                        .offset(x: 100,y: -25)
-                                                }
+                            isRedClicked = true
+                        } label: {
+                            Image("Friend_Monster").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200.0, height: 200.0)
+                            
+                        }
+                        .padding(.leading, 200) // Example of using padding for horizontal movement
+                        .padding(.top, -50) // Example of using padding for vertical movement
                         
                         
                         if (isRedClicked == true){
-                                                    Button(action: {
-                                                        isRedClicked = false
-                                                    }){
-
-                                                        Image("blank_rectangle").resizable()
-                                                            .aspectRatio(contentMode: .fit)
-                                                            .frame(width: 600.0, height: 500.0)
-                                                            .offset(x: 0,y: -280)
-                                                    }
-                                                    Image("Friend_Monster").resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width: 200.0, height: 200.0)
-                                                        .offset(x: 30.5,y: -135)
-                                                    Button {
-                                                        isRedClicked = false
-                                                    } label:{
-                                                        Image("x_icon").resizable()
-                                                            .aspectRatio(contentMode: .fit)
-                                                            .frame(width: 30.0, height: 30.0)
-                                                            .offset(x: -110,y: -500)
-                                                    }
-                                                    Image("send_zelle_icon").resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width: 150.0, height: 500.0)
-                                                        .offset(x: 0,y: -410)
-                                                    Image("request_zelle_icon").resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width: 150.0, height: 500.0)
-                                                        .offset(x: 0,y: -320)
-                                                }
-
+                            Button(action: {
+                                isRedClicked = false
+                            }){
+                                
+                                Image("blank_rectangle").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 600.0, height: 500.0)
+                                    .offset(x: 0,y: -280)
+                            }
+                            Image("Friend_Monster").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200.0, height: 200.0)
+                                .offset(x: 30.5,y: -135)
+                            Button {
+                                isRedClicked = false
+                            } label:{
+                                Image("x_icon").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30.0, height: 30.0)
+                                    .offset(x: -110,y: -500)
+                            }
+                            Image("send_zelle_icon").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 150.0, height: 500.0)
+                                .offset(x: 0,y: -410)
+                            Image("request_zelle_icon").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 150.0, height: 500.0)
+                                .offset(x: 0,y: -320)
+                        }
+                        
                         
                         if (isInfoClicked == true){
-                                                   // Button {
-                                                     //   isInfoClicked = false
-                                                    //} label:{
-                                                      //  Image("Cross").offset(x: -50, y: 200)
-                                                    //}
-                                                    Button {
-                                                        isInfoClicked = false
-                                                    } label: {
-                                                        Image("info_homepage").resizable()
-                                                            .aspectRatio(contentMode: .fit)
-                                                            .frame(width: 600.0, height: 650.0)
-                                                            .offset(x: 0,y: -300)
-
-                                                    }
-                                                    Button {
-                                                        isInfoClicked = false
-                                                    } label:{
-                                                        Image("x_icon").resizable()
-                                                            .aspectRatio(contentMode: .fit)
-                                                            .frame(width: 30.0, height: 30.0)
-                                                            .offset(x: -108,y: -490)
-                                                    }
-
-                                                }
-                        
-                        
-                        // The VStack for text and progress bar
-                        VStack {
-                            HStack {
-                                Text("\(userInfo.name) Lv. \(userInfo.level)")
-                                Button {
-                                                                    isInfoClicked = true
-                                                                } label: {
-                                                                    Image( "info_icon")
-                                                            }
+                            // Button {
+                            //   isInfoClicked = false
+                            //} label:{
+                            //  Image("Cross").offset(x: -50, y: 200)
+                            //}
+                            Button {
+                                isInfoClicked = false
+                            } label: {
+                                Image("info_homepage").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 600.0, height: 650.0)
+                                    .offset(x: 0,y: -300)
                                 
-                                Spacer()
-                                Text("+ EXP")
                             }
-                            .bold()
-                            .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
-                            
-                            ProgressBar(value: userInfo.EXP)
-                                .frame(height: 10)
+                            Button {
+                                isInfoClicked = false
+                            } label:{
+                                Image("x_icon").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30.0, height: 30.0)
+                                    .offset(x: -108,y: -490)
+                            }
                             
                         }
-                        .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
-                        .offset(x: 0,y: 40)
+                        
+                        
+                        //                        let details = accountDetails
+                        // The VStack for text and progress bar
+                        if let details = accountDetails {
+                            VStack {
+                                HStack {
+                                    Text("\(userInfo.name) Lv. \(details.level)")
+                                    Button {
+                                        isInfoClicked = true
+                                    } label: {
+                                        Image( "info_icon")
+                                    }
+                                    
+                                    Spacer()
+                                    Text("+ EXP")
+                                }
+                                .bold()
+                                .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
+                                
+                                ProgressBar(value: details.xpAmount)
+                                    .frame(height: 10)
+                                
+                            }
+                            .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
+                            .offset(x: 0,y: 40)
+                        }
                     }
                     .frame(height: 130.0)
                     
                     HStack {
                         Spacer()
                         VStack() {
-                            NavigationLink(destination: Banking_Page(userInfo: userInfo)){
+                            NavigationLink(destination: Banking_Page(userInfo: userInfo, accountDetails: accountDetails)){
                                 Image("Accounts_icon")
                                     .resizable()
                                     .frame(width: 40, height: 40)
@@ -367,7 +383,17 @@ struct ContentView: View {
             }
             .font(.custom("IrishGrover-Regular", size: 20))
             .onAppear {
-                print("Screen width: \(UIScreen.main.bounds.width), Screen height: \(UIScreen.main.bounds.height)")
+                print("Screen width: \(UIScreen.main.bounds.width), Screen height: \(UIScreen.main.bounds.height)");
+                //                .onAppear {
+                NetworkManager.shared.fetchAccountDetails { result in
+                    switch result {
+                    case .success(let details):
+                        self.accountDetails = details
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+                //            }
             }
             //            .animation(.easeInOut(duration: 1), value: isCard1Visible)
             //            .animation(.easeInOut(duration: 1), value: isCard2Visible)
@@ -388,25 +414,54 @@ struct ContentView: View {
         }
         .navigationBarBackButtonHidden(true)
     }
+    
+    //    func incrementExp(by amount: Float) {
+    //        userInfo.EXP += amount
+    //        // When experience increases and crosses the threshold for the next level
+    //        while userInfo.EXP >= 1.0 {
+    //            userInfo.EXP -= 1.0 // Subtract the full level's worth of exp
+    //            userInfo.level += 1      // Increment the level
+    //        }
+    //
+    //        // When experience decreases and falls below the current level
+    //        while userInfo.EXP < 0.0 && userInfo.level > 1 {
+    //            userInfo.EXP += 1.0 // Add the full level's worth of exp
+    //            userInfo.level -= 1      // Decrement the level
+    //        }
+    //
+    //        // Ensure expValue stays within the 0.0 to 1.0 range
+    //        userInfo.EXP = min(max(userInfo.EXP, 0.0), 1.0)
+    //        // Optionally, if you want to handle multiple level-ups in one go:
+    //        //            // You may want to add some logic here if there's additional processing
+    //        //            // to do on level-up, like resetting skills, bonuses, etc.
+    //    }
+    
     func incrementExp(by amount: Float) {
-        userInfo.EXP += amount
-        // When experience increases and crosses the threshold for the next level
-        while userInfo.EXP >= 1.0 {
-            userInfo.EXP -= 1.0 // Subtract the full level's worth of exp
-            userInfo.level += 1      // Increment the level
+        guard var details = accountDetails else {
+            print("Account details not available")
+            return
         }
         
-        // When experience decreases and falls below the current level
-        while userInfo.EXP < 0.0 && userInfo.level > 1 {
-            userInfo.EXP += 1.0 // Add the full level's worth of exp
-            userInfo.level -= 1      // Decrement the level
+        details.xpAmount += Float(amount)
+        
+        // Check if XP crosses the threshold of 100
+        while details.xpAmount >= 1 {
+            details.xpAmount -= 1  // Reset XP for the next level
+            details.level += 1       // Increase level
         }
         
-        // Ensure expValue stays within the 0.0 to 1.0 range
-        userInfo.EXP = min(max(userInfo.EXP, 0.0), 1.0)
-        // Optionally, if you want to handle multiple level-ups in one go:
-        //            // You may want to add some logic here if there's additional processing
-        //            // to do on level-up, like resetting skills, bonuses, etc.
+        while details.xpAmount < 0 && details.level > 1 {
+            details.xpAmount += 1.0 // Add the full level's worth of exp
+            details.level -= 1      // Decrement the level
+        }
+        
+        print("details level: \(details.level)")
+        
+        // Update the local state
+        accountDetails = details
+        
+        // Optionally, update the backend with the new XP and level
+        // ...
     }
     
     //    func randomPosition(cardSize: CGSize) -> CGPoint {

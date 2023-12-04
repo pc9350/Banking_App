@@ -26,6 +26,7 @@ import SwiftUI
 struct Banking_Page: View {
     
     var userInfo: UserAccountInfo
+    var accountDetails: AccountDetails?
     
         var body: some View {
             NavigationView {
@@ -107,13 +108,14 @@ struct Banking_Page: View {
                 //                    .fill(Color.gray.opacity(0.4))  // Use .gray for the border color, adjust opacity as needed
                 //                    .frame(height: 5)
                 
+            
                 // Payment Due Section
                 VStack(alignment: .leading) {
                     Text("Payment due")
                         .font(.headline)
                         .padding([.leading,.top])
                     
-                NavigationLink(destination: CreditCardView()){
+                    NavigationLink(destination: CardSelectionView(userInfo: userInfo)){
                         HStack {
                             Image("Card_3") // Replace with your card icon asset name
                                 .resizable()
@@ -169,7 +171,7 @@ struct Banking_Page: View {
                                     .font(.subheadline)
                                     .foregroundColor(.white)
                                 //                            Spacer()
-                                Text("\(userInfo.checkingAccountBalance)")
+                                Text("$\(accountDetails?.checkingAmount ?? 0)")
                                     .font(.system(size: 40))  // Adjust font size if necessary
                                     .fontWeight(.medium)
                                     .foregroundColor(.white)
@@ -191,7 +193,7 @@ struct Banking_Page: View {
                                     .font(.subheadline)
                                     .foregroundColor(.white)
                                 //                            Spacer()
-                                Text("\(userInfo.savingAccountBalance)")
+                                Text("$\(accountDetails?.savingsAmount ?? 0)")
                                     .font(.system(size: 40))  // Adjust font size if necessary
                                     .fontWeight(.medium)
                                     .foregroundColor(.white)
@@ -272,7 +274,21 @@ struct Banking_Page_Previews: PreviewProvider {
                                              savingAccountBalance: "$77,890.12",
                                              CC_Balance: "$2,898",CC_Limit: "$5,000",EXP: 0,level: 1,
                                              creditScore: 800)
+        
+        let sampleAccountDetails = AccountDetails(
+                    accountNumber: "123456789",
+                    xpAmount: 75.0,  // Example XP amount
+                    level: 3,        // Example level
+                    checkingAmount: 5000,    // Example checking account balance
+                    savingsAmount: 15000,    // Example savings account balance
+                    miles: 200,      // Example miles
+                    walmartCredits: 10,      // Example Walmart credits
+                    amazonCredits: 5,        // Example Amazon credits
+                    targetCredits: 8,        // Example Target credits
+                    joinDate: Date(),        // Current date
+                    id: "abc123"             // Example ID
+                )
         // Initialize Banking_Page with the sample user info
-        Banking_Page(userInfo: sampleUserInfo)
+        Banking_Page(userInfo: sampleUserInfo, accountDetails: sampleAccountDetails)
     }
 }

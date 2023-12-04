@@ -103,6 +103,25 @@ struct Login_Page: View {
                 // Handle login failure (e.g., show an alert)
             }
     }
+//    func authenticateUser() {
+//        NetworkManager.shared.authenticateUser(username: username, password: password) { result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let isAuthenticated):
+//                    if isAuthenticated {
+//                        appState.isAuthenticated = true
+//                        print("Authentication successful")
+//                    } else {
+//                        // Handle incorrect credentials
+//                        print("Authentication failed: Incorrect username or password")
+//                    }
+//                case .failure(let error):
+//                    // Handle network or server error
+//                    print("Authentication failed: \(error.localizedDescription)")
+//                }
+//            }
+//        }
+//    }
 }
 
 struct LoginPage_Previews: PreviewProvider {
