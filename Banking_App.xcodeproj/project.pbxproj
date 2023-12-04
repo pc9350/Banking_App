@@ -7,14 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		317418AD2B029AA100CA67CB /* PrizePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317418AC2B029AA100CA67CB /* PrizePageView.swift */; };
+		317418AF2B13C2AF00CA67CB /* CreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317418AE2B13C2AF00CA67CB /* CreditCardView.swift */; };
+		317418B12B140DDB00CA67CB /* PaymentProcessedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317418B02B140DDB00CA67CB /* PaymentProcessedView.swift */; };
+		3188993F2AF9622300838E6A /* MonsterMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3188993E2AF9622300838E6A /* MonsterMenuView.swift */; };
+		31A844572B1A325C00D4CE65 /* CardSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A844562B1A325C00D4CE65 /* CardSelectionView.swift */; };
 		B265AF882AE5E3C70075298E /* Banking_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265AF872AE5E3C70075298E /* Banking_App.swift */; };
 		B265AF8A2AE5E3C70075298E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265AF892AE5E3C70075298E /* ContentView.swift */; };
 		B265AF8C2AE5E3C90075298E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B265AF8B2AE5E3C90075298E /* Assets.xcassets */; };
 		B265AF8F2AE5E3C90075298E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B265AF8E2AE5E3C90075298E /* Preview Assets.xcassets */; };
 		B265AF992AEF093D0075298E /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B265AF982AEF09080075298E /* IrishGrover-Regular.ttf */; };
+		B27C66092B1AC43B00F6742F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27C66082B1AC43B00F6742F /* NetworkManager.swift */; };
+		B27C660B2B1C012F00F6742F /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27C660A2B1C012F00F6742F /* AccountDetails.swift */; };
+		B2EBAF522B02C11800CC5B81 /* Banking_Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EBAF512B02C11800CC5B81 /* Banking_Page.swift */; };
+		B2EBAF542B0824E000CC5B81 /* Login_Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EBAF532B0824E000CC5B81 /* Login_Page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		317418AC2B029AA100CA67CB /* PrizePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizePageView.swift; sourceTree = "<group>"; };
+		317418AE2B13C2AF00CA67CB /* CreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; };
+		317418B02B140DDB00CA67CB /* PaymentProcessedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProcessedView.swift; sourceTree = "<group>"; };
+		3188993E2AF9622300838E6A /* MonsterMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterMenuView.swift; sourceTree = "<group>"; };
+		31A844562B1A325C00D4CE65 /* CardSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelectionView.swift; sourceTree = "<group>"; };
 		B265AF842AE5E3C70075298E /* Banking_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banking_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B265AF872AE5E3C70075298E /* Banking_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking_App.swift; sourceTree = "<group>"; };
 		B265AF892AE5E3C70075298E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -22,6 +36,10 @@
 		B265AF8E2AE5E3C90075298E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B265AF982AEF09080075298E /* IrishGrover-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IrishGrover-Regular.ttf"; sourceTree = "<group>"; };
 		B265AF9A2AEF0A860075298E /* Banking-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Banking-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B27C66082B1AC43B00F6742F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B27C660A2B1C012F00F6742F /* AccountDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
+		B2EBAF512B02C11800CC5B81 /* Banking_Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking_Page.swift; sourceTree = "<group>"; };
+		B2EBAF532B0824E000CC5B81 /* Login_Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Page.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +72,21 @@
 		B265AF862AE5E3C70075298E /* Banking_App */ = {
 			isa = PBXGroup;
 			children = (
+				B2EBAF512B02C11800CC5B81 /* Banking_Page.swift */,
+				31A844562B1A325C00D4CE65 /* CardSelectionView.swift */,
 				B265AF9A2AEF0A860075298E /* Banking-App-Info.plist */,
 				B265AF972AEF09030075298E /* Font */,
 				B265AF872AE5E3C70075298E /* Banking_App.swift */,
 				B265AF892AE5E3C70075298E /* ContentView.swift */,
 				B265AF8B2AE5E3C90075298E /* Assets.xcassets */,
 				B265AF8D2AE5E3C90075298E /* Preview Content */,
+				B2EBAF532B0824E000CC5B81 /* Login_Page.swift */,
+				3188993E2AF9622300838E6A /* MonsterMenuView.swift */,
+				317418AC2B029AA100CA67CB /* PrizePageView.swift */,
+				317418AE2B13C2AF00CA67CB /* CreditCardView.swift */,
+				317418B02B140DDB00CA67CB /* PaymentProcessedView.swift */,
+				B27C66082B1AC43B00F6742F /* NetworkManager.swift */,
+				B27C660A2B1C012F00F6742F /* AccountDetails.swift */,
 			);
 			path = Banking_App;
 			sourceTree = "<group>";
@@ -151,7 +178,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2EBAF542B0824E000CC5B81 /* Login_Page.swift in Sources */,
+				B2EBAF522B02C11800CC5B81 /* Banking_Page.swift in Sources */,
+				B27C66092B1AC43B00F6742F /* NetworkManager.swift in Sources */,
+				31A844572B1A325C00D4CE65 /* CardSelectionView.swift in Sources */,
 				B265AF8A2AE5E3C70075298E /* ContentView.swift in Sources */,
+				317418AD2B029AA100CA67CB /* PrizePageView.swift in Sources */,
+				B27C660B2B1C012F00F6742F /* AccountDetails.swift in Sources */,
+				3188993F2AF9622300838E6A /* MonsterMenuView.swift in Sources */,
+				317418AF2B13C2AF00CA67CB /* CreditCardView.swift in Sources */,
+				317418B12B140DDB00CA67CB /* PaymentProcessedView.swift in Sources */,
 				B265AF882AE5E3C70075298E /* Banking_App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
