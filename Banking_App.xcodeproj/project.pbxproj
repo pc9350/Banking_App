@@ -17,6 +17,8 @@
 		B265AF8C2AE5E3C90075298E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B265AF8B2AE5E3C90075298E /* Assets.xcassets */; };
 		B265AF8F2AE5E3C90075298E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B265AF8E2AE5E3C90075298E /* Preview Assets.xcassets */; };
 		B265AF992AEF093D0075298E /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B265AF982AEF09080075298E /* IrishGrover-Regular.ttf */; };
+		B27C66092B1AC43B00F6742F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27C66082B1AC43B00F6742F /* NetworkManager.swift */; };
+		B27C660B2B1C012F00F6742F /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27C660A2B1C012F00F6742F /* AccountDetails.swift */; };
 		B2EBAF522B02C11800CC5B81 /* Banking_Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EBAF512B02C11800CC5B81 /* Banking_Page.swift */; };
 		B2EBAF542B0824E000CC5B81 /* Login_Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EBAF532B0824E000CC5B81 /* Login_Page.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		B265AF8E2AE5E3C90075298E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B265AF982AEF09080075298E /* IrishGrover-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IrishGrover-Regular.ttf"; sourceTree = "<group>"; };
 		B265AF9A2AEF0A860075298E /* Banking-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Banking-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B27C66082B1AC43B00F6742F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B27C660A2B1C012F00F6742F /* AccountDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
 		B2EBAF512B02C11800CC5B81 /* Banking_Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banking_Page.swift; sourceTree = "<group>"; };
 		B2EBAF532B0824E000CC5B81 /* Login_Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Page.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +85,8 @@
 				317418AC2B029AA100CA67CB /* PrizePageView.swift */,
 				317418AE2B13C2AF00CA67CB /* CreditCardView.swift */,
 				317418B02B140DDB00CA67CB /* PaymentProcessedView.swift */,
+				B27C66082B1AC43B00F6742F /* NetworkManager.swift */,
+				B27C660A2B1C012F00F6742F /* AccountDetails.swift */,
 			);
 			path = Banking_App;
 			sourceTree = "<group>";
@@ -174,9 +180,11 @@
 			files = (
 				B2EBAF542B0824E000CC5B81 /* Login_Page.swift in Sources */,
 				B2EBAF522B02C11800CC5B81 /* Banking_Page.swift in Sources */,
+				B27C66092B1AC43B00F6742F /* NetworkManager.swift in Sources */,
 				31A844572B1A325C00D4CE65 /* CardSelectionView.swift in Sources */,
 				B265AF8A2AE5E3C70075298E /* ContentView.swift in Sources */,
 				317418AD2B029AA100CA67CB /* PrizePageView.swift in Sources */,
+				B27C660B2B1C012F00F6742F /* AccountDetails.swift in Sources */,
 				3188993F2AF9622300838E6A /* MonsterMenuView.swift in Sources */,
 				317418AF2B13C2AF00CA67CB /* CreditCardView.swift in Sources */,
 				317418B12B140DDB00CA67CB /* PaymentProcessedView.swift in Sources */,
