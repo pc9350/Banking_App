@@ -38,17 +38,6 @@ Once you launch Monster Rewards:
 - Engage in activities to earn XP and level up.
 - Monitor and redeem your rewards as you progress.
 
-### 🤝 Contributing
-Contributions to Monster Rewards are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make to enhance Monster Rewards are immensely appreciated.
-- Fork the Project.
-- Create your Feature Branch (`git checkout -b feature/YourAmazingFeature`).
-- Commit your Changes (`git commit -m 'Add YourAmazingFeature'`).
-- Push to the Branch (`git push origin feature/YourAmazingFeature`).
-- Open a Pull Request.
-
-### 🔖 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ### 📬 Contact
 - Pranav Chhabra - chhabrapranav2001@gmail.com
 - Project Link: [Monster Rewards on GitHub](https://github.com/pc9350/Banking_App)
