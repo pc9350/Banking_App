@@ -39,5 +39,26 @@ Once you launch Monster Rewards:
 - Monitor and redeem your rewards as you progress.
 
 ### 📬 Contact
-- Pranav Chhabra - chhabrapranav2001@gmail.com
 - Project Link: [Monster Rewards on GitHub](https://github.com/pc9350/Banking_App)
+
+#### Contributors
+- **Pranav Chhabra** - pchhabra2@wisc.edu
+- **Vibhansh Saini** - vsaini@wisc.edu
+- **Mickey Chen** - cchen657@wisc.edu
+- **Izzy Bogot** - bogot@wisc.edu
+- **Aditya Roy** - roy35@wisc.edu
+- **Aslam Mohammad Sayeeduddin** - sayeeduddin@wisc.edu
+
+- ### 👥 Mentors
+
+We are grateful for the guidance and support provided by our mentors from Capital One and our professor at the University of Wisconsin-Madison throughout this project.
+
+#### Capital One Mentors
+- Peter Daly
+- Garret Huibregtse
+- Jillian Genova
+- Tyler Luedtke
+- Nolan Smith
+
+#### University of Wisconsin-Madison
+- Professor Amber Field
