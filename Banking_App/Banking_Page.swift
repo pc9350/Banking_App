@@ -273,7 +273,7 @@ struct Banking_Page_Previews: PreviewProvider {
                                              checkingAccountBalance: "$1,234.56",
                                              savingAccountBalance: "$77,890.12",
                                              CC_Balance: "$2,898",CC_Limit: "$5,000",EXP: 0,level: 1,
-                                             creditScore: 800)
+                                             creditScore: 800, miles: 20)
         
         let sampleAccountDetails = AccountDetails(
                     accountNumber: "123456789",

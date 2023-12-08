@@ -17,6 +17,7 @@ struct UserAccountInfo {
     var EXP: Float
     var level: Int
     var creditScore: Int
+    var miles: Int
     // Add other relevant details as needed
 }
 
@@ -71,7 +72,7 @@ struct ContentView: View {
     let card3Size: CGSize = CGSize(width: 70, height: 50)
     let card4Size: CGSize = CGSize(width: 60, height: 60)
     
-    @State private var userInfo = UserAccountInfo(name: "Mickey", checkingAccountBalance: "$8,525.81", savingAccountBalance: "$372,600.24",CC_Balance: "$2,000",CC_Limit: "$4,000",EXP: 0,level: 1, creditScore: 750)
+    @State private var userInfo = UserAccountInfo(name: "Mickey", checkingAccountBalance: "$8,525.81", savingAccountBalance: "$372,600.24",CC_Balance: "$2,000",CC_Limit: "$4,000",EXP: 0,level: 1, creditScore: 750, miles: 0)
     
     let positions = [
         CGPoint(x: 300, y: 280), // Adjusted
@@ -125,7 +126,7 @@ struct ContentView: View {
                                 .padding(.leading, 20)
                         }
                         Spacer()
-                        NavigationLink(destination: PrizePageView(accountDetails: accountDetails)){
+                        NavigationLink(destination: PrizePageView(accountDetails: accountDetails, capitalOneMiles: userInfo.miles)){
                             Image("top_Right_Icon")  // Replace icon
                                 .resizable()
                                 .scaledToFit()
@@ -181,10 +182,7 @@ struct ContentView: View {
                                         isCard1Visible = false
                                         incrementExp(by: 0.25)
                                     }
-                                    if var details = accountDetails {
-                                        details.miles += 20
-                                        accountDetails = details  // Update the state
-                                    }
+                                    userInfo.miles += 20
                                 }
                         }
                         
@@ -317,12 +315,11 @@ struct ContentView: View {
                         }
                         
                         
-                        //                        let details = accountDetails
                         // The VStack for text and progress bar
-                        if let details = accountDetails {
+
                             VStack {
                                 HStack {
-                                    Text("\(userInfo.name) Lv. \(details.level)")
+                                    Text("\(userInfo.name) Lv. \(userInfo.level)")
                                     Button {
                                         isInfoClicked = true
                                     } label: {
@@ -335,13 +332,13 @@ struct ContentView: View {
                                 .bold()
                                 .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
                                 
-                                ProgressBar(value: details.xpAmount)
+                                ProgressBar(value: userInfo.EXP)
                                     .frame(height: 10)
                                 
                             }
                             .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
                             .offset(x: 0,y: 40)
-                        }
+
                     }
                     .frame(height: 130.0)
                     
@@ -385,126 +382,73 @@ struct ContentView: View {
             .onAppear {
                 print("Screen width: \(UIScreen.main.bounds.width), Screen height: \(UIScreen.main.bounds.height)");
                 //                .onAppear {
-                NetworkManager.shared.fetchAccountDetails { result in
-                    switch result {
-                    case .success(let details):
-                        self.accountDetails = details
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                }
+//                NetworkManager.shared.fetchAccountDetails { result in
+//                    switch result {
+//                    case .success(let details):
+//                        self.accountDetails = details
+//                    case .failure(let error):
+//                        print(error.localizedDescription)
+//                    }
+//                }
                 //            }
             }
-            //            .animation(.easeInOut(duration: 1), value: isCard1Visible)
-            //            .animation(.easeInOut(duration: 1), value: isCard2Visible)
-            //            .animation(.easeInOut(duration: 1), value: isCard3Visible)
-            //            .animation(.easeInOut(duration: 1), value: isPoopVisible)
-            //            .onAppear {
-            //                    let safeAreaInsets = geometry.safeAreaInsets
-            //                    let usableHeight = geometry.size.height - safeAreaInsets.top - safeAreaInsets.bottom
-            //                    let usableWidth = geometry.size.width - safeAreaInsets.leading - safeAreaInsets.trailing
-            //
-            //                    // Now use these values to calculate your random positions
-            //                    // For example, adjust minY and maxY based on usableHeight
-            //                    let minY = ... // based on usableHeight
-            //                    let maxY = ... // based on usableHeight and card size
-            //                    // Similar adjustments for minX and maxX using usableWidth
-            //                }
-            //            }
+                        .animation(.easeInOut(duration: 1), value: isCard1Visible)
+                        .animation(.easeInOut(duration: 1), value: isCard2Visible)
+                        .animation(.easeInOut(duration: 1), value: isCard3Visible)
+                        .animation(.easeInOut(duration: 1), value: isPoopVisible)
+           
         }
         .navigationBarBackButtonHidden(true)
     }
     
-    //    func incrementExp(by amount: Float) {
-    //        userInfo.EXP += amount
-    //        // When experience increases and crosses the threshold for the next level
-    //        while userInfo.EXP >= 1.0 {
-    //            userInfo.EXP -= 1.0 // Subtract the full level's worth of exp
-    //            userInfo.level += 1      // Increment the level
-    //        }
-    //
-    //        // When experience decreases and falls below the current level
-    //        while userInfo.EXP < 0.0 && userInfo.level > 1 {
-    //            userInfo.EXP += 1.0 // Add the full level's worth of exp
-    //            userInfo.level -= 1      // Decrement the level
-    //        }
-    //
-    //        // Ensure expValue stays within the 0.0 to 1.0 range
-    //        userInfo.EXP = min(max(userInfo.EXP, 0.0), 1.0)
-    //        // Optionally, if you want to handle multiple level-ups in one go:
-    //        //            // You may want to add some logic here if there's additional processing
-    //        //            // to do on level-up, like resetting skills, bonuses, etc.
-    //    }
+        func incrementExp(by amount: Float) {
+            userInfo.EXP += amount
+            // When experience increases and crosses the threshold for the next level
+            while userInfo.EXP >= 1.0 {
+                userInfo.EXP -= 1.0 // Subtract the full level's worth of exp
+                userInfo.level += 1      // Increment the level
+            }
     
-    func incrementExp(by amount: Float) {
-        guard var details = accountDetails else {
-            print("Account details not available")
-            return
-        }
-        
-        details.xpAmount += Float(amount)
-        
-        // Check if XP crosses the threshold of 100
-        while details.xpAmount >= 1 {
-            details.xpAmount -= 1  // Reset XP for the next level
-            details.level += 1       // Increase level
-        }
-        
-        while details.xpAmount < 0 && details.level > 1 {
-            details.xpAmount += 1.0 // Add the full level's worth of exp
-            details.level -= 1      // Decrement the level
-        }
-        
-        print("details level: \(details.level)")
-        
-        // Update the local state
-        accountDetails = details
-        
-        // Optionally, update the backend with the new XP and level
-        // ...
-    }
+            // When experience decreases and falls below the current level
+            while userInfo.EXP < 0.0 && userInfo.level > 1 {
+                userInfo.EXP += 1.0 // Add the full level's worth of exp
+                userInfo.level -= 1      // Decrement the level
+            }
     
-    //    func randomPosition(cardSize: CGSize) -> CGPoint {
-    //        let lowerBoundY = UIScreen.main.bounds.height / 2 - 100
-    //        let upperBoundY = UIScreen.main.bounds.height - cardSize.height / 2
-    //
-    //        let x = CGFloat.random(in: cardSize.width / 2...(UIScreen.main.bounds.width - cardSize.width / 2))
-    //        let y = CGFloat.random(in: lowerBoundY...upperBoundY)
-    //
-    //        return CGPoint(x: x, y: y)
-    //    }
-    //    func randomPosition(cardSize: CGSize) -> CGPoint {
-    //        let screenHeight = UIScreen.main.bounds.height
-    //        let screenWidth = UIScreen.main.bounds.width
-    //
-    //        // Start y at the middle of the screen to ensure the icon is in the bottom half
-    //        let minY = screenHeight / 2
-    //        // Subtract the card's height and the navigation bar's height from the screen height to get the maxY
-    //        let maxY = screenHeight - cardSize.height - 200 // Assuming the navigation bar is 50 points high
-    //
-    //        // Ensure we're not going off the sides of the screen with the width
-    //        let minX = cardSize.width / 2
-    //        let maxX = screenWidth - cardSize.width / 2
-    //
-    //        // Generate a random position within the constraints
-    //        let randomX = CGFloat.random(in: minX...maxX)
-    //        let randomY = CGFloat.random(in: minY...maxY)
-    //
-    //        return CGPoint(x: randomX, y: randomY)
-    //    }
-    //
-    //    private func assignPositions() {
-    //        var availablePositions = positions.shuffled()
-    //        print("available positions: \(availablePositions)")
-    //        var newPositions = [CGPoint?](repeating: nil, count: 4)
-    //
-    //        if isCard1Visible { newPositions[0] = availablePositions.popLast() }
-    //        if isCard2Visible { newPositions[1] = availablePositions.popLast() }
-    //        if isCard3Visible { newPositions[2] = availablePositions.popLast() }
-    //        if isPoopVisible { newPositions[3] = availablePositions.popLast() }
-    //
-    //        assignedPositions = newPositions.map { $0 ?? .zero }
-    //    }
+            // Ensure expValue stays within the 0.0 to 1.0 range
+            userInfo.EXP = min(max(userInfo.EXP, 0.0), 1.0)
+            // Optionally, if you want to handle multiple level-ups in one go:
+            //            // You may want to add some logic here if there's additional processing
+            //            // to do on level-up, like resetting skills, bonuses, etc.
+        }
+    
+//    func incrementExp(by amount: Float) {
+//        guard var details = accountDetails else {
+//            print("Account details not available")
+//            return
+//        }
+//        
+//        details.xpAmount += Float(amount)
+//        
+//        // Check if XP crosses the threshold of 100
+//        while details.xpAmount >= 1 {
+//            details.xpAmount -= 1  // Reset XP for the next level
+//            details.level += 1       // Increase level
+//        }
+//        
+//        while details.xpAmount < 0 && details.level > 1 {
+//            details.xpAmount += 1.0 // Add the full level's worth of exp
+//            details.level -= 1      // Decrement the level
+//        }
+//        
+//        print("details level: \(details.level)")
+//        
+//        // Update the local state
+//        accountDetails = details
+//        
+//        // Optionally, update the backend with the new XP and level
+//        // ...
+//    }
     
     
 }

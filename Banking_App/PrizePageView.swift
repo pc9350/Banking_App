@@ -9,11 +9,11 @@ import SwiftUI
 
 struct PrizePageView: View {
     let accountDetails: AccountDetails?
+    let capitalOneMiles: Int
     
     // Declaring text variable
     let titleText = "Amazing job,"
     let name = "Mickey"
-//    let capitalOneMiles = 50
 //    let walmartCredits = 5
 //    let amazonCredits = 0
 //    let targetCredits = 0
@@ -69,7 +69,7 @@ struct PrizePageView: View {
                             .scaledToFill()
                             .frame(width: 50, height: 50)
                         
-                        Text("\((accountDetails?.miles ?? 0)) Capital One Miles")
+                        Text("\(capitalOneMiles) Capital One Miles")
                             .font(.custom("IrishGrover-Regular", size: 18))
                     }
                     
@@ -126,9 +126,10 @@ struct PrizePageView_Previews: PreviewProvider {
                     joinDate: Date(),        // Current date
                     id: "abc123"             // Example ID
                 )
-
         
-        PrizePageView(accountDetails: sampleAccountDetails)
+        let miles = 100
+        
+        PrizePageView(accountDetails: sampleAccountDetails,capitalOneMiles: miles)
     }
 }
 
