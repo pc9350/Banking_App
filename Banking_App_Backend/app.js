@@ -330,6 +330,50 @@ app.post('/api/account/changeXPWithoutPassword', async (req, res) => {
   }
 });
 
+// Increase level by a specified amount without requiring password
+app.post('/api/account/increaseLevelByAmountWithoutPassword', async (req, res) => {
+  try {
+    const { accountNumber, level } = req.body;
+    
+    // Find the account by account number
+    const account = await Account.findOne({ accountNumber });
+
+    // Check if the account exists
+    if (!account) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+
+    // Update the level by the specified amount
+    account.level = level;
+
+    // Save the updated account
+    const updatedAccount = await account.save();
+
+    res.json({ level: updatedAccount.level });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Display all information for a given account number
+app.get('/api/account/:accountNumber', async (req, res) => {
+  try {
+    const account = await Account.findOne({ accountNumber: req.params.accountNumber });
+
+    if (!account) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+
+    res.json(account);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
+
+
 
 
 
