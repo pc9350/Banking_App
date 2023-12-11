@@ -357,7 +357,7 @@ app.post('/api/account/increaseLevelByAmountWithoutPassword', async (req, res) =
 
 // Display all information for a given account number
 app.get('/api/account/:accountNumber', async (req, res) => {
-  try {
+/*  try {
     const account = await Account.findOne({ accountNumber: req.params.accountNumber });
 
     if (!account) {
@@ -368,8 +368,47 @@ app.get('/api/account/:accountNumber', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+  */
+    try {
+    const account = await Account.findOne({ accountNumber: req.params.accountNumber });
+
+    if (!account) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+
+    // Create a copy of the account object excluding checkings and savings balances
+    const accountDetails = { ...account.toObject() };
+    delete accountDetails.checkingAmount;
+    delete accountDetails.savingsAmount;
+
+    res.json(accountDetails);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+  
+});
+/*
+// Display account information excluding checkings and savings balances
+app.get('/api/account/:accountNumber/details', async (req, res) => {
+  try {
+    const account = await Account.findOne({ accountNumber: req.params.accountNumber });
+
+    if (!account) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+
+    // Create a copy of the account object excluding checkings and savings balances
+    const accountDetails = { ...account.toObject() };
+    delete accountDetails.checkingAmount;
+    delete accountDetails.savingsAmount;
+
+    res.json(accountDetails);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
+*/
 
 
 
