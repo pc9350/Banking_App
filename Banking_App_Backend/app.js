@@ -305,6 +305,32 @@ app.get('/api/account/:accountNumber/targetCredits', async (req, res) => {
   }
 });
 
+// Update XP without requiring password
+app.post('/api/account/changeXPWithoutPassword', async (req, res) => {
+  try {
+    const { accountNumber, xpAmount } = req.body;
+    
+    // Find the account by account number
+    const account = await Account.findOne({ accountNumber });
+
+    // Check if the account exists
+    if (!account) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+
+    // Update the XP amount
+    account.xpAmount = xpAmount;
+
+    // Save the updated account
+    const updatedAccount = await account.save();
+
+    res.json({ xpAmount: updatedAccount.xpAmount });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 
 
 
