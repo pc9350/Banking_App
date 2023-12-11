@@ -18,6 +18,7 @@ struct UserAccountInfo {
     var level: Int
     var creditScore: Int
     var miles: Int
+    var totalXP: Int  // Total XP across all levels
     // Add other relevant details as needed
 }
 
@@ -72,7 +73,7 @@ struct ContentView: View {
     let card3Size: CGSize = CGSize(width: 70, height: 50)
     let card4Size: CGSize = CGSize(width: 60, height: 60)
     
-    @State private var userInfo = UserAccountInfo(name: "Mickey", checkingAccountBalance: "$8,525.81", savingAccountBalance: "$372,600.24",CC_Balance: "$2,000",CC_Limit: "$4,000",EXP: 0,level: 1, creditScore: 750, miles: 0)
+    @State private var userInfo = UserAccountInfo(name: "Mickey", checkingAccountBalance: "$8,525.81", savingAccountBalance: "$372,600.24",CC_Balance: "$2,000",CC_Limit: "$4,000",EXP: 0,level: 1, creditScore: 750, miles: 0, totalXP: 0)
     
     let positions = [
         CGPoint(x: 300, y: 280), // Adjusted
@@ -98,7 +99,15 @@ struct ContentView: View {
     //value to fetch from backend for the EXP
     @State private var xpAmount: Int = 0
     
+    @State private var xp: Int = 0
+    
     @State private var accountDetails: AccountDetails?
+    
+    @EnvironmentObject var viewModel: AccountDetailsViewModel
+    
+    let password = "password"
+    
+    let accountNumber = UserDefaults.standard.string(forKey: "accountNumber") ?? "Unknown"
     
     
     var body: some View {
@@ -180,9 +189,21 @@ struct ContentView: View {
                                 .onTapGesture {
                                     withAnimation {
                                         isCard1Visible = false
+                                        userInfo.totalXP += 25
                                         incrementExp(by: 0.25)
                                     }
                                     userInfo.miles += 20
+                                    //call to update Miles
+                                    NetworkManager.shared.updateMiles(accountNumber: accountNumber, password: password, miles: userInfo.miles) { milesResult in
+                                        switch milesResult {
+                                        case .success(let updatedMiles):
+                                            print("Miles updated successfully on the server. New Level: \(updatedMiles)")
+                                        case .failure(let error):
+                                            print("Error updating Level on the server: \(error.localizedDescription)")
+                                        }
+                                    }
+
+                                    
                                 }
                         }
                         
@@ -196,8 +217,10 @@ struct ContentView: View {
                                 .onTapGesture {
                                     withAnimation {
                                         isCard2Visible = false
+                                        userInfo.totalXP += 25
                                         incrementExp(by: 0.25)
                                     }
+                                    
                                     //}
                                 }
                         }
@@ -212,6 +235,7 @@ struct ContentView: View {
                                 .onTapGesture {
                                     withAnimation {
                                         isCard3Visible = false
+                                        userInfo.totalXP += 25
                                         incrementExp(by: 0.25)
                                     }
                                 }
@@ -227,8 +251,10 @@ struct ContentView: View {
                                 .onTapGesture {
                                     withAnimation {
                                         isPoopVisible = false
+                                        userInfo.totalXP -= 10
                                         incrementExp(by: -0.1)
                                     }
+                                    
                                 }
                             //                            }
                         }
@@ -316,29 +342,29 @@ struct ContentView: View {
                         
                         
                         // The VStack for text and progress bar
-
-                            VStack {
-                                HStack {
-                                    Text("\(userInfo.name) Lv. \(userInfo.level)")
-                                    Button {
-                                        isInfoClicked = true
-                                    } label: {
-                                        Image( "info_icon")
-                                    }
-                                    
-                                    Spacer()
-                                    Text("+ EXP")
+                        
+                        VStack {
+                            HStack {
+                                Text("\(userInfo.name) Lv. \(userInfo.level)")
+                                Button {
+                                    isInfoClicked = true
+                                } label: {
+                                    Image( "info_icon")
                                 }
-                                .bold()
-                                .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
                                 
-                                ProgressBar(value: userInfo.EXP)
-                                    .frame(height: 10)
-                                
+                                Spacer()
+                                Text("+ EXP")
                             }
-                            .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
-                            .offset(x: 0,y: 40)
-
+                            .bold()
+                            .foregroundColor(Color(red: 0.0, green: 0.0, blue: 0.5))
+                            
+                            ProgressBar(value: userInfo.EXP)
+                                .frame(height: 10)
+                            
+                        }
+                        .frame(width: UIScreen.main.bounds.width - 40) // Set a defined width
+                        .offset(x: 0,y: 40)
+                        
                     }
                     .frame(height: 130.0)
                     
@@ -362,13 +388,16 @@ struct ContentView: View {
                                 .font(.caption)
                         }
                         Spacer()
+                        NavigationLink(destination: ImageView(imageName: "profile_page").padding(.bottom,35)){
                         VStack {
                             Image("Profile_icon")  // Replace icon
                                 .resizable()
                                 .frame(width: 40, height: 40)
                             Text("Profile")
                                 .font(.caption)
+                                .foregroundStyle(Color.black)
                         }
+                                           }
                         Spacer()
                     }
                     .padding(.top, 30.0)
@@ -380,75 +409,123 @@ struct ContentView: View {
             }
             .font(.custom("IrishGrover-Regular", size: 20))
             .onAppear {
-                print("Screen width: \(UIScreen.main.bounds.width), Screen height: \(UIScreen.main.bounds.height)");
-                //                .onAppear {
-//                NetworkManager.shared.fetchAccountDetails { result in
-//                    switch result {
-//                    case .success(let details):
-//                        self.accountDetails = details
-//                    case .failure(let error):
-//                        print(error.localizedDescription)
-//                    }
-//                }
-                //            }
+                //                    .onAppear {
+                print("Account Number: \(accountNumber)")
+                if !accountNumber.isEmpty {
+                    NetworkManager.shared.getXP(accountNumber: accountNumber) { result in
+                        switch result {
+                        case .success(let xpAmount):
+                            print("XP Amount for account \(accountNumber): \(xpAmount)")
+                            
+                            // Fetch Level - assuming getLevel is similar to getXP
+                            NetworkManager.shared.getLevel(accountNumber: accountNumber) { levelResult in
+                                switch levelResult {
+                                case .success(let level):
+                                    print("Level for account \(accountNumber): \(level)")
+                                    // Store the level in UserDefaults
+                                            UserDefaults.standard.set(level, forKey: "userLevel")
+                                    
+                                    NetworkManager.shared.getMiles(accountNumber: accountNumber) { milesResult in
+                                        switch milesResult {
+                                        case .success(let miles):
+                                            print("Miles for account \(accountNumber): \(miles)")
+                                            // Store the level in UserDefaults
+                                                    UserDefaults.standard.set(miles, forKey: "userMiles")
+
+                                        case .failure(let error):
+                                            print("Error fetching Level: \(error.localizedDescription)")
+                                        }
+                                    }
+                                    
+
+                                case .failure(let error):
+                                    print("Error fetching Level: \(error.localizedDescription)")
+                                }
+                            }
+                            
+                        case .failure(let error):
+                            print("Error fetching XP: \(error.localizedDescription)")
+                        }
+                    }
+                }
             }
-                        .animation(.easeInOut(duration: 1), value: isCard1Visible)
-                        .animation(.easeInOut(duration: 1), value: isCard2Visible)
-                        .animation(.easeInOut(duration: 1), value: isCard3Visible)
-                        .animation(.easeInOut(duration: 1), value: isPoopVisible)
-           
+            .animation(.easeInOut(duration: 1), value: isCard1Visible)
+            .animation(.easeInOut(duration: 1), value: isCard2Visible)
+            .animation(.easeInOut(duration: 1), value: isCard3Visible)
+            .animation(.easeInOut(duration: 1), value: isPoopVisible)
+            
         }
         .navigationBarBackButtonHidden(true)
     }
     
-        func incrementExp(by amount: Float) {
-            userInfo.EXP += amount
-            // When experience increases and crosses the threshold for the next level
-            while userInfo.EXP >= 1.0 {
-                userInfo.EXP -= 1.0 // Subtract the full level's worth of exp
-                userInfo.level += 1      // Increment the level
-            }
-    
-            // When experience decreases and falls below the current level
-            while userInfo.EXP < 0.0 && userInfo.level > 1 {
-                userInfo.EXP += 1.0 // Add the full level's worth of exp
-                userInfo.level -= 1      // Decrement the level
-            }
-    
-            // Ensure expValue stays within the 0.0 to 1.0 range
-            userInfo.EXP = min(max(userInfo.EXP, 0.0), 1.0)
-            // Optionally, if you want to handle multiple level-ups in one go:
-            //            // You may want to add some logic here if there's additional processing
-            //            // to do on level-up, like resetting skills, bonuses, etc.
+    func incrementExp(by amount: Float) {
+        userInfo.EXP += amount
+        // When experience increases and crosses the threshold for the next level
+        while userInfo.EXP >= 1.0 {
+            userInfo.EXP -= 1.0 // Subtract the full level's worth of exp
+            userInfo.level += 1      // Increment the level
         }
+        
+        // When experience decreases and falls below the current level
+        while userInfo.EXP < 0.0 && userInfo.level > 1 {
+            userInfo.EXP += 1.0 // Add the full level's worth of exp
+            userInfo.level -= 1      // Decrement the level
+        }
+        
+        // Ensure expValue stays within the 0.0 to 1.0 range
+        userInfo.EXP = min(max(userInfo.EXP, 0.0), 1.0)
+        
+        
+        
+        //        POST call to the backend for XP
+        NetworkManager.shared.updateXP(accountNumber: accountNumber, password: password, xpAmount: userInfo.totalXP) { result in
+            switch result {
+            case .success(let updatedXP):
+                print("XP updated successfully on the server. New XP: \(updatedXP)")
+            case .failure(let error):
+                print("Error updating XP on the server: \(error.localizedDescription)")
+                
+            }
+        }
+        
+        // Call updateLevel separately
+        NetworkManager.shared.updateLevel(accountNumber: accountNumber, level: userInfo.level) { levelResult in
+            switch levelResult {
+            case .success(let updatedLevel):
+                print("Level updated successfully on the server. New Level: \(updatedLevel)")
+            case .failure(let error):
+                print("Error updating Level on the server: \(error.localizedDescription)")
+            }
+        }
+    }
     
-//    func incrementExp(by amount: Float) {
-//        guard var details = accountDetails else {
-//            print("Account details not available")
-//            return
-//        }
-//        
-//        details.xpAmount += Float(amount)
-//        
-//        // Check if XP crosses the threshold of 100
-//        while details.xpAmount >= 1 {
-//            details.xpAmount -= 1  // Reset XP for the next level
-//            details.level += 1       // Increase level
-//        }
-//        
-//        while details.xpAmount < 0 && details.level > 1 {
-//            details.xpAmount += 1.0 // Add the full level's worth of exp
-//            details.level -= 1      // Decrement the level
-//        }
-//        
-//        print("details level: \(details.level)")
-//        
-//        // Update the local state
-//        accountDetails = details
-//        
-//        // Optionally, update the backend with the new XP and level
-//        // ...
-//    }
+    //    func incrementExp(by amount: Float) {
+    //        guard var details = accountDetails else {
+    //            print("Account details not available")
+    //            return
+    //        }
+    //
+    //        details.xpAmount += Float(amount)
+    //
+    //        // Check if XP crosses the threshold of 100
+    //        while details.xpAmount >= 1 {
+    //            details.xpAmount -= 1  // Reset XP for the next level
+    //            details.level += 1       // Increase level
+    //        }
+    //
+    //        while details.xpAmount < 0 && details.level > 1 {
+    //            details.xpAmount += 1.0 // Add the full level's worth of exp
+    //            details.level -= 1      // Decrement the level
+    //        }
+    //
+    //        print("details level: \(details.level)")
+    //
+    //        // Update the local state
+    //        accountDetails = details
+    //
+    //        // Optionally, update the backend with the new XP and level
+    //        // ...
+    //    }
     
     
 }

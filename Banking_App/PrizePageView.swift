@@ -21,7 +21,7 @@ struct PrizePageView: View {
         NavigationView {
             ZStack {
                 // Background Image
-                Image("Prize")
+                Image("prize_Page")
                     .resizable()
 //                    .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+60)

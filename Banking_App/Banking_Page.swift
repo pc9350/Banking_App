@@ -42,7 +42,7 @@ struct Banking_Page: View {
                     Text("Good evening, \(userInfo.name)")
                         .font(.title)
                         .fontWeight(.semibold)
-                    Text("December 25, 2023")
+                    Text("December 11, 2023")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundColor(.gray)
@@ -141,7 +141,7 @@ struct Banking_Page: View {
                         Spacer()
                         
                         VStack(alignment: .trailing) {
-                            Text("Due on 12/31/2023")
+                            Text("Due on 12/17/2023")
                                 .font(.caption)
                                 .foregroundColor(.white)
                                 .padding(.vertical, 2)
@@ -171,7 +171,7 @@ struct Banking_Page: View {
                                     .font(.subheadline)
                                     .foregroundColor(.white)
                                 //                            Spacer()
-                                Text("$\(accountDetails?.checkingAmount ?? 0)")
+                                Text("$\(accountDetails?.checkingAmount ?? 7500)")
                                     .font(.system(size: 40))  // Adjust font size if necessary
                                     .fontWeight(.medium)
                                     .foregroundColor(.white)
@@ -193,7 +193,7 @@ struct Banking_Page: View {
                                     .font(.subheadline)
                                     .foregroundColor(.white)
                                 //                            Spacer()
-                                Text("$\(accountDetails?.savingsAmount ?? 0)")
+                                Text("$\(accountDetails?.savingsAmount ?? 250000)")
                                     .font(.system(size: 40))  // Adjust font size if necessary
                                     .fontWeight(.medium)
                                     .foregroundColor(.white)
@@ -273,7 +273,7 @@ struct Banking_Page_Previews: PreviewProvider {
                                              checkingAccountBalance: "$1,234.56",
                                              savingAccountBalance: "$77,890.12",
                                              CC_Balance: "$2,898",CC_Limit: "$5,000",EXP: 0,level: 1,
-                                             creditScore: 800, miles: 20)
+                                             creditScore: 800, miles: 20, totalXP: 0)
         
         let sampleAccountDetails = AccountDetails(
                     accountNumber: "123456789",

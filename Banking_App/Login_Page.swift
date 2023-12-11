@@ -18,6 +18,9 @@ struct Login_Page: View {
     
     @State private var accountDetails: AccountDetails?
     
+    @EnvironmentObject var viewModel: AccountDetailsViewModel
+
+    
     // Mock user data for demonstration purposes
     let users = [
         (username: "user1@gmail.com", password: "password1"),
