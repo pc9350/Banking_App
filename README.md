@@ -38,6 +38,43 @@ Once you launch Monster Rewards:
 - Engage in activities to earn XP and level up.
 - Monitor and redeem your rewards as you progress.
 
+- ### 💡 Installing and Running the Backend 
+- cd into backend folder
+ ``` npm install```
+- ### Set up MongoDB Atlas
+
+Create a MongoDB Atlas account (if not already).
+Create a cluster and get the connection URI.
+Replace the uri variable in the code with your MongoDB Atlas connection URI.
+
+### Start the application
+```node app.js```
+
+### Access the API
+The application will run on http://localhost:3000 by default.
+Use tools like Postman or cURL to interact with the API endpoints.
+Example:
+- Endpoint: POST /api/account/createRandomAccount
+- Request Body:
+```json
+{
+  "name": "John Doe",
+  "password": "your-password"
+}
+```
+Change XP
+- Endpoint: POST /api/account/changeXP
+- Request Body:
+```
+{
+  "accountNumber": "account-number",
+  "password": "your-password",
+  "xpAmount": 100
+}
+```
+
+
+
 ### 📬 Contact
 - Project Link: [Monster Rewards on GitHub](https://github.com/pc9350/Banking_App)
 
