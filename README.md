@@ -72,7 +72,7 @@ Change XP
   "xpAmount": 100
 }
 ```
-
+(For full API documentation contact us!)
 
 
 ### 📬 Contact
