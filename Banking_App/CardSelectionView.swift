@@ -78,11 +78,11 @@ struct CardSelectionView: View {
                             Spacer()
                             
                             VStack(alignment: .trailing) {
-                                Text("Due on 12/31/2023")
+                                Text("Due on 1/1/2024")
                                     .font(.caption)
                                     .foregroundColor(.white)
                                     .padding(.vertical, 2)
-                                Text("6 days left")
+                                Text("20 days left")
                                     .font(.caption)
                                     .foregroundColor(.white.opacity(0.7))
                             }
@@ -126,7 +126,7 @@ struct CardSelectionView: View {
                             Spacer()
                             
                             VStack(alignment: .trailing) {
-                                Text("Due on 12/31/2023")
+                                Text("Due on 12/17/2023")
                                     .font(.caption)
                                     .foregroundColor(.white)
                                     .padding(.vertical, 2)
@@ -178,7 +178,7 @@ struct CardSelectionView: View {
                                     .font(.caption)
                                     .foregroundColor(.white)
                                     .padding(.vertical, 2)
-                                Text("6 days left")
+                                Text("19 days left")
                                     .font(.caption)
                                     .foregroundColor(.white.opacity(0.7))
                             }
@@ -257,7 +257,7 @@ struct CardSelection_Previews: PreviewProvider {
                                              checkingAccountBalance: "$1,234.56",
                                              savingAccountBalance: "$77,890.12",
                                              CC_Balance: "$2,898",CC_Limit: "$5,000",EXP: 0,level: 1,
-                                             creditScore: 800)
+                                             creditScore: 800, miles: 20, totalXP: 0)
         // Initialize Banking_Page with the sample user info
         CardSelectionView(userInfo: sampleUserInfo)
     }

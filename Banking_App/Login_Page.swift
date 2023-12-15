@@ -16,6 +16,11 @@ struct Login_Page: View {
     @State private var password: String = ""
     @EnvironmentObject var appState: AppState
     
+    @State private var accountDetails: AccountDetails?
+    
+    @EnvironmentObject var viewModel: AccountDetailsViewModel
+
+    
     // Mock user data for demonstration purposes
     let users = [
         (username: "user1@gmail.com", password: "password1"),
@@ -89,6 +94,16 @@ struct Login_Page: View {
         .background(Color("blue").edgesIgnoringSafeArea(.all))
 //        .navigationDestination(isPresented: $appState.isAuthenticated) {
 //            ContentView() // Destination view
+//        }
+//        .onAppear(){
+//            NetworkManager.shared.generateAccount { result in
+//                switch result {
+//                case .success(let details):
+//                    self.accountDetails = details
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
 //        }
     }
     

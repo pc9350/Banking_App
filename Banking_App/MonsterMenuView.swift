@@ -14,7 +14,7 @@ struct MonsterMenuView: View {
         NavigationView {
             ZStack {
                 // Background Image
-                Image("Monster")
+                Image("monster_Page")
                     .resizable()
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width+20, height: UIScreen.main.bounds.height+70)
