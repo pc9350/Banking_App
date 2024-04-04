@@ -31,7 +31,7 @@ Monster Rewards offers a fresh approach to personal banking by combining essenti
 
 ### Screenshots
 
-![Image of login page](./Assets/login_page)
+![Image of login page](/Assets/login_page)
 ![Image of landing page](./Assets/landing_page)
 ![Image of monsters page](./Assets/monsters_page)
 ![Image of rewards page](./Assets/rewards_page)
