@@ -29,6 +29,15 @@ Monster Rewards offers a fresh approach to personal banking by combining essenti
 2. Open the project in **Xcode**.
 3. Run the app using the **iOS simulator**.
 
+### Screenshots
+
+![Image of login page](./Assets/login_page.png)
+![Image of landing page](./Assets/landing_page.png)
+![Image of monsters page](./Assets/monsters_page.png)
+![Image of rewards page](./Assets/rewards_page.png)
+![Image of Account page](./Assets/account_page.png)
+![Image of Cards page](./Assets/card_page.png)
+
 ### 💡 Usage
 Once you launch Monster Rewards:
 - Sign in using the mock credentials:
